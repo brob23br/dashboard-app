@@ -3,15 +3,23 @@ frontend:
   phases:
     preBuild:
       commands:
+        - echo "Starting preBuild phase"
         - nvm install 20
         - nvm use 20
         - node -v
         - npm -v
+        - echo "Navigating to app directory"
         - cd brandon_portfolio/app
-        - npm install --legacy-peer-deps
+        - pwd
+        - ls -la
+        - echo "Installing dependencies with legacy peer deps"
+        - npm install --legacy-peer-deps --verbose
+        - echo "Dependencies installed successfully"
     build:
       commands:
+        - echo "Starting build phase"
         - npm run build
+        - echo "Build completed"
   artifacts:
     baseDirectory: brandon_portfolio/app/.next
     files:
