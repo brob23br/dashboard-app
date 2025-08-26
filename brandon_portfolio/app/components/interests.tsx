@@ -53,47 +53,93 @@ const interests = [
   }
 ]
 
-// Updated media array to support both images and videos
 const jeepingMedia = [
-  // Images - Replace these paths with your actual image files
+  // Images - All compressed and optimized for web
   {
     type: 'image',
-    src: '/images/jeep/trail-mountain.jpg',
-    alt: 'Red Jeep on mountain trail',
+    src: '/images/trail-mountain.jpg',
+    alt: 'Red Jeep on mountain trail with scenic backdrop',
     caption: 'Trail exploration in the mountains'
   },
   {
     type: 'image',
-    src: '/images/jeep/jeep-meetup.jpg',
-    alt: 'Jeep meetup with multiple vehicles',
-    caption: 'Community jeep gathering'
+    src: '/images/scenic-overlook.jpg',
+    alt: 'Jeep positioned at scenic mountain overlook',
+    caption: 'Breathtaking scenic overlook adventure'
   },
   {
     type: 'image',
-    src: '/images/jeep/mud-terrain.jpg',
-    alt: 'Off-road action shot through mud',
+    src: '/images/camber-rock.jpg',
+    alt: 'Jeep navigating challenging rock formations',
+    caption: 'Technical rock crawling and navigation'
+  },
+  {
+    type: 'image',
+    src: '/images/mud-terrain.jpg',
+    alt: 'Off-road action shot through muddy terrain',
     caption: 'Tackling challenging muddy terrain'
   },
   {
     type: 'image',
-    src: '/images/jeep/scenic-overlook.jpg',
-    alt: 'Jeep on scenic overlook',
-    caption: 'Scenic overlook adventure'
-  },
-  // Videos - Add your video files here
-  {
-    type: 'video',
-    src: '/videos/jeep/trail-action.mp4',
-    poster: '/images/jeep/trail-action-poster.jpg', // Optional poster image
-    alt: 'Trail action video',
-    caption: 'Epic trail adventure footage'
+    src: '/images/dirty-jeep.jpg',
+    alt: 'Muddy Jeep after successful trail adventure',
+    caption: 'Battle scars from an epic trail day'
   },
   {
+    type: 'image',
+    src: '/images/broken-lexus.jpg',
+    alt: 'Recovery operation helping another vehicle',
+    caption: 'Trail recovery and community support'
+  },
+  {
+    type: 'image',
+    src: '/images/spring-compressor.jpg',
+    alt: 'Mechanical work and vehicle maintenance',
+    caption: 'Hands-on vehicle modifications'
+  },
+  {
+    type: 'image',
+    src: '/images/amos-jeep.jpg',
+    alt: 'Jeep community gathering and friendship',
+    caption: 'Building friendships through shared adventures'
+  },
+  {
+    type: 'image',
+    src: '/images/jeep-meetup.jpg',
+    alt: 'Group of Jeeps at community meetup event',
+    caption: 'Community jeep gathering and camaraderie'
+  },
+  {
+    type: 'image',
+    src: '/images/prone-rest.jpg',
+    alt: 'Taking a break during outdoor adventure',
+    caption: 'Rest and reflection in nature'
+  },
+
+  // Videos - All compressed for optimal web performance
+  {
     type: 'video',
-    src: '/videos/jeep/rock-crawling.mp4',
-    poster: '/images/jeep/rock-crawling-poster.jpg',
-    alt: 'Rock crawling video',
-    caption: 'Technical rock crawling session'
+    src: '/videos/rock-crawling-compressed.mp4',
+    alt: 'Technical rock crawling demonstration',
+    caption: 'Precision rock crawling techniques'
+  },
+  {
+    type: 'video',
+    src: '/videos/trail-action-compressed.mp4',
+    alt: 'Dynamic trail adventure footage',
+    caption: 'Epic trail adventure in action'
+  },
+  {
+    type: 'video',
+    src: '/videos/mud-sliding.mp4',
+    alt: 'Exciting mud terrain navigation',
+    caption: 'Sliding through challenging mud terrain'
+  },
+  {
+    type: 'video',
+    src: '/videos/slow-descent.mp4',
+    alt: 'Controlled descent on steep terrain',
+    caption: 'Technical slow descent maneuver'
   }
 ]
 
@@ -169,8 +215,9 @@ export default function Interests() {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-slate-800 mb-4">Adventure Gallery</h3>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              A visual journey through jeeping adventures, showcasing the excitement of off-road exploration 
-              and the beauty of outdoor landscapes.
+              A comprehensive visual journey through jeeping adventures, featuring action-packed videos
+              and stunning photography that showcase the thrill of off-road exploration, technical challenges,
+              and the camaraderie of the jeeping community.
             </p>
           </div>
 
@@ -196,8 +243,8 @@ export default function Interests() {
                     <div className="relative w-full h-full">
                       <video
                         className="w-full h-full object-cover"
-                        poster={media.poster}
                         preload="metadata"
+                        muted
                       >
                         <source src={media.src} type="video/mp4" />
                         Your browser does not support the video tag.
@@ -262,7 +309,6 @@ export default function Interests() {
                   controls
                   autoPlay
                   className="max-w-full max-h-full rounded-lg"
-                  poster={jeepingMedia[selectedMedia].poster}
                 >
                   <source src={jeepingMedia[selectedMedia].src} type="video/mp4" />
                   Your browser does not support the video tag.
