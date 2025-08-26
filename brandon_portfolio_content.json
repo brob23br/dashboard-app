@@ -1,0 +1,199 @@
+{
+  "personal_info": {
+    "name": "Brandon",
+    "title": "Cloud Computing Student & Technology Business Services Assistant",
+    "current_education": "Western Governor's University - Cloud Computing (AWS Specialization)",
+    "current_role": "Senior Technology Business Services Assistant at Wells Fargo",
+    "responsibilities": "Technical and project implementation support for a PMO",
+    "career_goals": "Solutions Architect in cloud industry, focusing on scalable, secure, and efficient cloud solutions with strong cybersecurity integration",
+    "location": "Charlotte, NC",
+    "email": "brob23.br@gmail.com",
+    "github": "https://github.com/brob23br",
+    "linkedin": "Available on request"
+  },
+  "certifications": [
+    {
+      "name": "CompTIA Project+",
+      "category": "Project Management"
+    },
+    {
+      "name": "CompTIA A+",
+      "category": "Hardware/Software Support"
+    },
+    {
+      "name": "CompTIA Network+",
+      "category": "Networking"
+    },
+    {
+      "name": "CompTIA Security+",
+      "category": "Cybersecurity"
+    },
+    {
+      "name": "CompTIA Cloud+",
+      "category": "Cloud Computing"
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner",
+      "category": "AWS Cloud"
+    },
+    {
+      "name": "LPI Linux Essentials",
+      "category": "Linux Administration"
+    },
+    {
+      "name": "Microsoft AZ-900",
+      "category": "Azure Fundamentals"
+    }
+  ],
+  "technical_skills": [
+    "AWS Cloud Architecture",
+    "Linux Administration",
+    "Windows Systems",
+    "Network Configuration",
+    "Cloud Security",
+    "Project Management",
+    "SSH/SFTP",
+    "Command Line Interface",
+    "VPC Design",
+    "EC2 Management",
+    "S3 Storage",
+    "RDS",
+    "Cybersecurity"
+  ],
+  "projects": [
+    {
+      "title": "SSH-keygen",
+      "category": "Linux Security",
+      "technologies": ["Linux", "SSH", "Kali", "Mint", "Terminal"],
+      "description": "Implementation of SSH key generation for secure authentication",
+      "focus_areas": ["Security", "Authentication", "Linux Administration"]
+    },
+    {
+      "title": "Mapping a Network Drive in Linux Mint",
+      "category": "Linux Administration",
+      "technologies": ["Linux", "Storage", "Mint", "Terminal"],
+      "description": "Configuration of network storage mapping in Linux environment",
+      "focus_areas": ["Network Storage", "Linux Systems", "File Management"]
+    },
+    {
+      "title": "AWS CLI Access on Linux",
+      "category": "AWS Cloud",
+      "technologies": ["AWS", "Linux", "Mint", "Terminal", "AWS CLI"],
+      "certification_relation": "AWS Solutions Architect Associate (CAA-003)",
+      "description": "Configuration and implementation of AWS Command Line Interface on Linux systems",
+      "focus_areas": ["Cloud Management", "Linux Integration", "AWS Services"]
+    },
+    {
+      "title": "AWS CLI Access on Windows",
+      "category": "AWS Cloud",
+      "technologies": ["Windows", "AWS", "Command Line", "AWS CLI"],
+      "certification_relation": "AWS Solutions Architect Associate (CAA-003)",
+      "description": "Setup and configuration of AWS CLI on Windows environment",
+      "focus_areas": ["Cross-platform Cloud Access", "Windows Administration", "AWS Management"]
+    },
+    {
+      "title": "AWS Transfer Family",
+      "category": "AWS Cloud Services",
+      "technologies": ["AWS", "S3", "SSH", "SFTP"],
+      "certification_relation": "AWS Solutions Architect Associate",
+      "description": "Implementation of AWS Transfer Family for secure file transfers",
+      "focus_areas": ["File Transfer Security", "S3 Integration", "Protocol Management"]
+    },
+    {
+      "title": "Creating an EC2 Virtual Machine using AWS Management Console",
+      "category": "AWS Compute",
+      "technologies": ["AWS", "EC2", "RDP", "Windows"],
+      "certification_relation": "AWS Cloud Practitioner",
+      "description": "Deployment and configuration of EC2 instances through AWS Management Console",
+      "focus_areas": ["Virtual Machine Management", "Remote Access", "Cloud Computing"]
+    },
+    {
+      "title": "Creating a VPC",
+      "category": "AWS Networking",
+      "technologies": ["AWS", "VPC"],
+      "certification_relation": "AWS Cloud Practitioner",
+      "description": "Design and implementation of Virtual Private Cloud infrastructure",
+      "focus_areas": ["Network Architecture", "Cloud Security", "Infrastructure Design"]
+    },
+    {
+      "title": "AWS Storage Services",
+      "category": "AWS Storage",
+      "technologies": ["AWS", "S3"],
+      "certification_relation": "AWS Cloud Practitioner",
+      "description": "Exploration and implementation of AWS storage solutions",
+      "focus_areas": ["Data Storage", "Cloud Storage Strategy", "S3 Configuration"]
+    },
+    {
+      "title": "AWS Pricing Calculator Demo",
+      "category": "AWS Cost Management",
+      "technologies": ["AWS", "AWS Pricing Calculator"],
+      "certification_relation": "AWS Cloud Practitioner",
+      "description": "Cost estimation and optimization using AWS Pricing Calculator",
+      "focus_areas": ["Cost Management", "Financial Planning", "Resource Optimization"]
+    },
+    {
+      "title": "AWS Artifact",
+      "category": "AWS Compliance",
+      "technologies": ["AWS", "AWS Artifact"],
+      "certification_relation": "AWS Cloud Practitioner",
+      "description": "Access and management of AWS compliance documentation",
+      "focus_areas": ["Compliance Management", "Documentation", "Audit Preparation"]
+    },
+    {
+      "title": "AWS Knowledge Resources",
+      "category": "AWS Documentation",
+      "technologies": ["AWS", "AWS Support Center", "AWS Knowledge Center", "AWS Documentation", "AWS Blog"],
+      "certification_relation": "AWS Cloud Practitioner",
+      "description": "Comprehensive exploration of AWS knowledge and support resources",
+      "focus_areas": ["Continuous Learning", "Resource Management", "Technical Support"]
+    },
+    {
+      "title": "AWS Regions, Availability Zones, and Global Edge Networks",
+      "category": "AWS Infrastructure",
+      "technologies": ["AWS", "VPC", "S3", "RDS"],
+      "certification_relation": "AWS Cloud Practitioner",
+      "description": "Understanding and implementation of AWS global infrastructure components",
+      "focus_areas": ["Global Infrastructure", "High Availability", "Disaster Recovery"]
+    },
+    {
+      "title": "AWS Organizations",
+      "category": "AWS Management",
+      "technologies": ["AWS"],
+      "certification_relation": "AWS Solutions Architect Associate (CAA-003)",
+      "project_type": "Cantrill Demo",
+      "description": "Implementation and management of AWS Organizations for multi-account environments",
+      "focus_areas": ["Multi-account Management", "Organizational Structure", "Access Control"]
+    },
+    {
+      "title": "Implementing an Organizational Trail",
+      "category": "AWS Security & Monitoring",
+      "technologies": ["AWS", "S3", "CloudTrail"],
+      "certification_relation": "AWS Solutions Architect Associate (CAA-003)",
+      "project_type": "Cantrill Demo",
+      "description": "Setup of organizational-level CloudTrail for comprehensive audit logging",
+      "focus_areas": ["Audit Logging", "Security Monitoring", "Compliance Tracking"]
+    },
+    {
+      "title": "AWS CAA-003 Prep",
+      "category": "Professional Development",
+      "technologies": ["AWS"],
+      "certification_relation": "AWS Solutions Architect Associate (CAA-003)",
+      "description": "Comprehensive preparation materials and studies for AWS Solutions Architect Associate certification",
+      "focus_areas": ["Certification Preparation", "Advanced AWS Services", "Architecture Design"]
+    }
+  ],
+  "interests_and_hobbies": [
+    "Jeeping",
+    "Reading",
+    "Technology Research"
+  ],
+  "professional_summary": "Brandon is a dedicated cloud computing professional pursuing his degree at Western Governor's University while working full-time at Wells Fargo. His portfolio demonstrates comprehensive hands-on experience with AWS services, Linux administration, and cybersecurity practices. His projects span from fundamental system administration tasks to advanced cloud architecture implementations, showcasing a well-rounded technical skill set that aligns with his goal of becoming a Solutions Architect. His work emphasizes practical implementation of secure, scalable cloud solutions with a strong focus on both technical excellence and business value.",
+  "key_project_categories": {
+    "Linux Administration": ["SSH-keygen", "Mapping a network drive in Linux Mint", "AWS CLI Access on Linux"],
+    "AWS Cloud Services": ["AWS Transfer Family", "AWS Storage Services", "AWS CLI Access on Windows"],
+    "AWS Compute & Networking": ["Creating an EC2 Virtual Machine", "Creating a VPC", "AWS Regions and Availability Zones"],
+    "AWS Management & Governance": ["AWS Organizations", "Implementing an Organizational Trail", "AWS Artifact"],
+    "Cost & Resource Management": ["AWS Pricing Calculator Demo", "AWS Knowledge Resources"],
+    "Professional Development": ["AWS CAA-003 Prep"]
+  }
+}
