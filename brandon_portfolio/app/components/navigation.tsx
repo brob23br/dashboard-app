@@ -41,15 +41,7 @@ export default function Navigation() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-2xl font-bold text-slate-800"
-          >
-            Brandon Robinson
-          </motion.div>
-
+        <div className="flex justify-center items-center">
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item, index) => (
