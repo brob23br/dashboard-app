@@ -1,11 +1,12 @@
-
 'use client'
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Mountain, Camera, Users, Wrench, Map, Heart } from 'lucide-react'
+import { Mountain, Camera, Users, Wrench, Map, Heart, Play, Image as ImageIcon } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import { useState } from 'react'
 
 const interests = [
   {
@@ -52,26 +53,47 @@ const interests = [
   }
 ]
 
-const jeepingImages = [
+// Updated media array to support both images and videos
+const jeepingMedia = [
+  // Images - Replace these paths with your actual image files
   {
-    src: '/api/placeholder/400/300',
+    type: 'image',
+    src: '/images/jeep/trail-mountain.jpg',
     alt: 'Red Jeep on mountain trail',
     caption: 'Trail exploration in the mountains'
   },
   {
-    src: '/api/placeholder/400/300',
+    type: 'image',
+    src: '/images/jeep/jeep-meetup.jpg',
     alt: 'Jeep meetup with multiple vehicles',
     caption: 'Community jeep gathering'
   },
   {
-    src: '/api/placeholder/400/300',
+    type: 'image',
+    src: '/images/jeep/mud-terrain.jpg',
     alt: 'Off-road action shot through mud',
     caption: 'Tackling challenging muddy terrain'
   },
   {
-    src: '/api/placeholder/400/300',
+    type: 'image',
+    src: '/images/jeep/scenic-overlook.jpg',
     alt: 'Jeep on scenic overlook',
     caption: 'Scenic overlook adventure'
+  },
+  // Videos - Add your video files here
+  {
+    type: 'video',
+    src: '/videos/jeep/trail-action.mp4',
+    poster: '/images/jeep/trail-action-poster.jpg', // Optional poster image
+    alt: 'Trail action video',
+    caption: 'Epic trail adventure footage'
+  },
+  {
+    type: 'video',
+    src: '/videos/jeep/rock-crawling.mp4',
+    poster: '/images/jeep/rock-crawling-poster.jpg',
+    alt: 'Rock crawling video',
+    caption: 'Technical rock crawling session'
   }
 ]
 
@@ -80,6 +102,8 @@ export default function Interests() {
     triggerOnce: true,
     threshold: 0.1
   })
+  
+  const [selectedMedia, setSelectedMedia] = useState<number | null>(null)
 
   return (
     <section id="interests" className="py-20 bg-white">
@@ -135,7 +159,7 @@ export default function Interests() {
           ))}
         </div>
 
-        {/* Jeeping Gallery */}
+        {/* Adventure Gallery with Images and Videos */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -150,25 +174,57 @@ export default function Interests() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {jeepingImages.map((image, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {jeepingMedia.map((media, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                 className="relative aspect-[4/3] group cursor-pointer"
+                onClick={() => setSelectedMedia(index)}
               >
                 <div className="absolute inset-0 bg-slate-200 rounded-xl overflow-hidden">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  {media.type === 'image' ? (
+                    <Image
+                      src={media.src}
+                      alt={media.alt}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="relative w-full h-full">
+                      <video
+                        className="w-full h-full object-cover"
+                        poster={media.poster}
+                        preload="metadata"
+                      >
+                        <source src={media.src} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+                        <div className="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform">
+                          <Play className="w-8 h-8 text-slate-800 ml-1" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Media type indicator */}
+                  <div className="absolute top-3 right-3">
+                    <div className="bg-black/50 rounded-full p-2">
+                      {media.type === 'image' ? (
+                        <ImageIcon className="w-4 h-4 text-white" />
+                      ) : (
+                        <Play className="w-4 h-4 text-white" />
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Caption overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <p className="text-white text-sm font-medium">{image.caption}</p>
+                      <p className="text-white text-sm font-medium">{media.caption}</p>
                     </div>
                   </div>
                 </div>
@@ -176,6 +232,49 @@ export default function Interests() {
             ))}
           </div>
         </motion.div>
+
+        {/* Media Modal/Lightbox */}
+        {selectedMedia !== null && (
+          <div 
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedMedia(null)}
+          >
+            <div className="relative max-w-4xl max-h-full">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="absolute -top-12 right-0 text-white hover:text-slate-300"
+                onClick={() => setSelectedMedia(null)}
+              >
+                ✕ Close
+              </Button>
+              
+              {jeepingMedia[selectedMedia].type === 'image' ? (
+                <Image
+                  src={jeepingMedia[selectedMedia].src}
+                  alt={jeepingMedia[selectedMedia].alt}
+                  width={800}
+                  height={600}
+                  className="max-w-full max-h-full object-contain rounded-lg"
+                />
+              ) : (
+                <video
+                  controls
+                  autoPlay
+                  className="max-w-full max-h-full rounded-lg"
+                  poster={jeepingMedia[selectedMedia].poster}
+                >
+                  <source src={jeepingMedia[selectedMedia].src} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+              
+              <div className="text-center mt-4">
+                <p className="text-white text-lg">{jeepingMedia[selectedMedia].caption}</p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Personal Philosophy */}
         <motion.div
