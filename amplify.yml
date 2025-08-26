@@ -3,25 +3,18 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Starting preBuild phase"
+        - echo "Installing Node.js v20"
         - nvm install 20
         - nvm use 20
-        - node -v
-        - npm -v
-        - echo "Navigating to app directory"
+        - echo "Installing dependencies"
         - cd brandon_portfolio/app
-        - pwd
-        - ls -la
-        - echo "Installing dependencies with legacy peer deps"
-        - npm install --legacy-peer-deps --verbose
-        - echo "Dependencies installed successfully"
+        - npm install --legacy-peer-deps
     build:
       commands:
-        - echo "Starting build phase"
+        - echo "Building Next.js application for static export"
         - npm run build
-        - echo "Build completed"
   artifacts:
-    baseDirectory: brandon_portfolio/app/.next
+    baseDirectory: brandon_portfolio/app/out
     files:
       - '**/*'
   cache:
