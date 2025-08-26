@@ -134,6 +134,13 @@ const projectCategories = [
     color: 'text-red-500 bg-red-50',
     projects: [
       {
+        title: 'Personal Portfolio Website',
+        description: 'Modern, responsive portfolio built with Next.js 14, TypeScript, and Tailwind CSS. Features smooth animations, interactive components, and cloud deployment.',
+        tags: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Vercel', 'AWS'],
+        status: 'Completed',
+        link: 'https://github.com/brob23br/dashboard-app'
+      },
+      {
         title: 'AWS Solutions Architect Preparation',
         description: 'Comprehensive study program including hands-on labs and practice examinations.',
         tags: ['Certification', 'SAA-C03', 'Study'],
