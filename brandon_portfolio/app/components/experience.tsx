@@ -292,7 +292,7 @@ export default function Experience() {
               variant="secondary" 
               size="lg" 
               className="px-8"
-              onClick={() => window.open('https://brob314.com', '_blank')}
+              onClick={() => window.open('https://me.brob314.com', '_blank')}
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               Download Resume
