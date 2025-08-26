@@ -4,8 +4,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build"
   },
   "devDependencies": {
     "@next/swc-wasm-nodejs": "13.5.1",
