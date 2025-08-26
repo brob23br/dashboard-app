@@ -8,7 +8,7 @@ frontend:
         - node -v
         - npm -v
         - cd brandon_portfolio/app
-        - npm install
+        - npm install --legacy-peer-deps
     build:
       commands:
         - npm run build
