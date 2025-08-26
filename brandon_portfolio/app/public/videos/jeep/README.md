@@ -2,8 +2,8 @@
 
 Place your jeep videos in this directory with these suggested names:
 
-- trail-action.mp4
-- rock-crawling.mp4
+- trail-action.mp4 - used
+- rock-crawling.mp4 - used
 
 Video Requirements:
 - Format: MP4 (H.264 codec)
