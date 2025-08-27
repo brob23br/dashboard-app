@@ -2,7 +2,7 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Removed 'output: export' to enable API routes for Strava integration
   trailingSlash: true,
   distDir: process.env.NEXT_DIST_DIR || '.next',
   experimental: {
