@@ -174,6 +174,70 @@ export default function StravaSection() {
           </Card>
         </motion.div>
 
+        {/* Live Strava Embed Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-16"
+        >
+          <div className="flex items-center justify-center space-x-3 mb-8">
+            <Activity className="w-6 h-6 text-orange-500" />
+            <h3 className="text-3xl font-bold text-slate-800">Live Strava Feed</h3>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-0 shadow-lg bg-white/90 overflow-hidden">
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <p className="text-slate-600 mb-4">
+                    Connect with me on Strava to see real-time activity updates and join fitness challenges!
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {/* Strava Profile Widget */}
+                    <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6">
+                      <h4 className="font-bold text-slate-800 mb-4">Strava Profile</h4>
+                      <div className="space-y-2 text-sm text-slate-600">
+                        <p>• Follow my latest runs, rides, and workouts</p>
+                        <p>• Join community challenges and competitions</p>
+                        <p>• See detailed activity maps and statistics</p>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="mt-4 w-full text-orange-600 border-orange-600 hover:bg-orange-50"
+                        onClick={() => window.open('https://www.strava.com/athletes/110985586', '_blank')}
+                      >
+                        <Activity className="w-4 h-4 mr-2" />
+                        Follow on Strava
+                      </Button>
+                    </div>
+
+                    {/* Activity Heatmap */}
+                    <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6">
+                      <h4 className="font-bold text-slate-800 mb-4">Activity Heatmap</h4>
+                      <div className="space-y-2 text-sm text-slate-600">
+                        <p>• Explore my running and cycling routes</p>
+                        <p>• Discover popular local trails and paths</p>
+                        <p>• See activity density across different areas</p>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="mt-4 w-full text-blue-600 border-blue-600 hover:bg-blue-50"
+                        onClick={() => window.open('https://www.strava.com/athletes/110985586/heatmaps/621d3d8c#12.00/-80.94000/35.11000/hot/all', '_blank')}
+                      >
+                        <MapPin className="w-4 h-4 mr-2" />
+                        View Heatmap
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Recent Activities */}
           <motion.div
