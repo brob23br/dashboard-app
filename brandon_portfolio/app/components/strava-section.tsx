@@ -268,7 +268,7 @@ export default function StravaSection() {
                             <p className="text-sm text-slate-500">{activity.date}</p>
                           </div>
                         </div>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="secondary" className="text-xs">
                           {activity.type}
                         </Badge>
                       </div>
