@@ -1,413 +1,305 @@
+'use client';
 
-'use client'
-
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { Activity, MapPin, Clock, TrendingUp, Trophy, Target, Calendar } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-
-// Mock Strava data - In production this would come from Strava API
-const mockStravaData = {
-  profile: {
-    name: 'Brandon Robinson',
-    totalActivities: 142,
-    followers: 23,
-    following: 45,
-    totalDistance: 1247.3,
-    totalElevation: 12850,
-    totalTime: 98.5 // in hours
-  },
-  recentActivities: [
-    {
-      id: 1,
-      name: 'Morning Trail Run',
-      type: 'Run',
-      distance: 9.6,
-      elevation: 111,
-      time: '1:03:34',
-      date: '2025-08-25',
-      location: 'Rock Hill, SC'
-    },
-    {
-      id: 2,
-      name: 'Strength Training Session',
-      type: 'WeightTraining',
-      time: '1:01:47',
-      date: '2025-08-24',
-      location: 'Local Gym'
-    },
-    {
-      id: 3,
-      name: 'Evening Ride',
-      type: 'Ride',
-      distance: 7.7,
-      elevation: 78,
-      time: '24:14',
-      date: '2025-08-23',
-      location: 'Charlotte, NC'
-    }
-  ],
-  monthlyStats: {
-    distance: 37.5,
-    time: '20h 10m',
-    activities: 12,
-    elevation: 1205
-  },
-  achievements: [
-    { name: 'You Got This: 100 Days powered by adidas', date: 'August 2025', type: 'Challenge' },
-    { name: 'August Ten Days Active Challenge', date: 'August 2025', type: 'Challenge' },
-    { name: 'August 400-Minute Challenge', date: 'August 2025', type: 'Challenge' },
-    { name: 'August 5K x Brooks Challenge', date: 'August 2025', type: 'Challenge' }
-  ]
-}
-
-const activityTypeIcons: { [key: string]: any } = {
-  Run: '🏃‍♂️',
-  Ride: '🚴‍♂️',
-  WeightTraining: '🏋️‍♂️',
-  Hike: '🥾',
-  Walk: '🚶‍♂️'
-}
-
-const CountUpNumber = ({ end, duration = 2 }: { end: number; duration?: number }) => {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    let startTime: number
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime
-      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1)
-      setCount(Math.floor(progress * end))
-      if (progress < 1) {
-        requestAnimationFrame(animate)
-      }
-    }
-    requestAnimationFrame(animate)
-  }, [end, duration])
-
-  return <span>{count.toLocaleString()}</span>
-}
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { ExternalLink, Activity, MapPin, Calendar, Clock, TrendingUp, Award } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 export default function StravaSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
-  })
+    threshold: 0.1,
+  });
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (inView) {
+      setIsVisible(true);
+    }
+  }, [inView]);
+
+  // Mock data for display purposes
+  const mockActivities = [
+    {
+      id: 1,
+      name: "Morning Run",
+      type: "Run",
+      distance: 5200,
+      moving_time: 1800,
+      total_elevation_gain: 45,
+      start_date: "2024-01-15T07:30:00Z",
+      location_city: "San Francisco",
+      location_state: "CA"
+    },
+    {
+      id: 2,
+      name: "Evening Bike Ride",
+      type: "Ride",
+      distance: 15000,
+      moving_time: 2700,
+      total_elevation_gain: 120,
+      start_date: "2024-01-14T18:00:00Z",
+      location_city: "San Francisco",
+      location_state: "CA"
+    }
+  ];
+
+  const mockStats = {
+    recent_run_totals: {
+      count: 12,
+      distance: 62400,
+      moving_time: 21600,
+      elevation_gain: 540
+    },
+    recent_ride_totals: {
+      count: 8,
+      distance: 180000,
+      moving_time: 21600,
+      elevation_gain: 1200
+    }
+  };
+
+  const formatDistance = (meters: number) => {
+    const km = meters / 1000;
+    return km.toFixed(1) + ' km';
+  };
+
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    if (hours > 0) {
+      return `${hours}h ${minutes}m`;
+    }
+    return `${minutes}m`;
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  };
 
   return (
-    <section id="strava" className="py-20 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="strava" className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center space-x-3 mb-6">
-            <Activity className="w-10 h-10 text-orange-500" />
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Activity className="w-8 h-8 text-orange-500" />
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               Fitness Journey
             </h2>
           </div>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-6">
-            Maintaining an active lifestyle through running, cycling, and strength training. 
-            Consistent dedication to fitness goals and community challenges.
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Staying active and pushing boundaries through running, cycling, and outdoor adventures.
           </p>
-          <Button 
-            variant="outline" 
-            className="text-orange-600 border-orange-600 hover:bg-orange-50"
-            onClick={() => window.open('https://www.strava.com/athletes/110985586', '_blank')}
-          >
-            <Activity className="w-4 h-4 mr-2" />
-            View on Strava
-          </Button>
         </motion.div>
 
-        {/* Stats Overview */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
-        >
-          <Card className="text-center border-0 shadow-md bg-white/80 backdrop-blur-sm">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-3xl font-bold text-orange-600">
-                {inView && <CountUpNumber end={mockStravaData.profile.totalActivities} />}
-              </CardTitle>
-              <CardDescription className="font-medium">Total Activities</CardDescription>
-            </CardHeader>
-          </Card>
-          
-          <Card className="text-center border-0 shadow-md bg-white/80 backdrop-blur-sm">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-3xl font-bold text-red-600">
-                {inView && <CountUpNumber end={Math.round(mockStravaData.profile.totalDistance)} />}
-                <span className="text-lg ml-1">mi</span>
-              </CardTitle>
-              <CardDescription className="font-medium">Total Distance</CardDescription>
-            </CardHeader>
-          </Card>
-          
-          <Card className="text-center border-0 shadow-md bg-white/80 backdrop-blur-sm">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-3xl font-bold text-blue-600">
-                {inView && <CountUpNumber end={Math.round(mockStravaData.profile.totalElevation)} />}
-                <span className="text-lg ml-1">ft</span>
-              </CardTitle>
-              <CardDescription className="font-medium">Total Elevation</CardDescription>
-            </CardHeader>
-          </Card>
-          
-          <Card className="text-center border-0 shadow-md bg-white/80 backdrop-blur-sm">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-3xl font-bold text-green-600">
-                {inView && <CountUpNumber end={Math.round(mockStravaData.profile.totalTime)} />}
-                <span className="text-lg ml-1">hrs</span>
-              </CardTitle>
-              <CardDescription className="font-medium">Total Time</CardDescription>
-            </CardHeader>
-          </Card>
-        </motion.div>
-
-        {/* Live Strava Embed Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-16"
-        >
-          <div className="flex items-center justify-center space-x-3 mb-8">
-            <Activity className="w-6 h-6 text-orange-500" />
-            <h3 className="text-3xl font-bold text-slate-800">Live Strava Feed</h3>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-lg bg-white/90 overflow-hidden">
-              <CardContent className="p-6">
-                <div className="text-center mb-6">
-                  <p className="text-slate-600 mb-4">
-                    Connect with me on Strava to see real-time activity updates and join fitness challenges!
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {/* Strava Profile Widget */}
-                    <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6">
-                      <h4 className="font-bold text-slate-800 mb-4">Strava Profile</h4>
-                      <div className="space-y-2 text-sm text-slate-600">
-                        <p>• Follow my latest runs, rides, and workouts</p>
-                        <p>• Join community challenges and competitions</p>
-                        <p>• See detailed activity maps and statistics</p>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="mt-4 w-full text-orange-600 border-orange-600 hover:bg-orange-50"
-                        onClick={() => window.open('https://www.strava.com/athletes/110985586', '_blank')}
-                      >
-                        <Activity className="w-4 h-4 mr-2" />
-                        Follow on Strava
-                      </Button>
-                    </div>
-
-                    {/* Activity Heatmap */}
-                    <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6">
-                      <h4 className="font-bold text-slate-800 mb-4">Activity Heatmap</h4>
-                      <div className="space-y-2 text-sm text-slate-600">
-                        <p>• Explore my running and cycling routes</p>
-                        <p>• Discover popular local trails and paths</p>
-                        <p>• See activity density across different areas</p>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="mt-4 w-full text-blue-600 border-blue-600 hover:bg-blue-50"
-                        onClick={() => window.open('https://www.strava.com/athletes/110985586/heatmaps/621d3d8c#12.00/-80.94000/35.11000/hot/all', '_blank')}
-                      >
-                        <MapPin className="w-4 h-4 mr-2" />
-                        View Heatmap
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Recent Activities */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {/* Strava Profile Widget */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"
           >
-            <div className="flex items-center space-x-3 mb-8">
-              <Calendar className="w-6 h-6 text-orange-500" />
-              <h3 className="text-2xl font-bold text-slate-800">Recent Activities</h3>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <Activity className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Brandon Robinson</h3>
+                <p className="text-gray-600 dark:text-gray-300">Athlete Profile</p>
+              </div>
             </div>
-            
-            <div className="space-y-4">
-              {mockStravaData.recentActivities.map((activity, index) => (
-                <motion.div
-                  key={activity.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                >
-                  <Card className="border-0 shadow-sm hover:shadow-md transition-all duration-300 bg-white/90">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center space-x-3">
-                          <span className="text-2xl">{activityTypeIcons[activity.type] || '🏃‍♂️'}</span>
-                          <div>
-                            <h4 className="font-semibold text-slate-800">{activity.name}</h4>
-                            <p className="text-sm text-slate-500">{activity.date}</p>
-                          </div>
-                        </div>
-                        <Badge variant="secondary" className="text-xs">
-                          {activity.type}
-                        </Badge>
-                      </div>
-                      
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                        {activity.distance && (
-                          <div className="flex items-center space-x-1 text-slate-600">
-                            <MapPin className="w-3 h-3" />
-                            <span>{activity.distance} mi</span>
-                          </div>
-                        )}
-                        <div className="flex items-center space-x-1 text-slate-600">
-                          <Clock className="w-3 h-3" />
-                          <span>{activity.time}</span>
-                        </div>
-                        {activity.elevation && (
-                          <div className="flex items-center space-x-1 text-slate-600">
-                            <TrendingUp className="w-3 h-3" />
-                            <span>{activity.elevation} ft</span>
-                          </div>
-                        )}
-                        <div className="text-slate-500 text-xs">
-                          {activity.location}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  {mockStats.recent_run_totals.count + mockStats.recent_ride_totals.count}
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Activities</div>
+              </div>
+              <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  {formatDistance(mockStats.recent_run_totals.distance + mockStats.recent_ride_totals.distance)}
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Distance</div>
+              </div>
             </div>
+
+            <a
+              href="https://www.strava.com/athletes/your-athlete-id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105"
+            >
+              <Activity className="w-5 h-5" />
+              View Strava Profile
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </motion.div>
 
-          {/* Monthly Stats & Achievements */}
+          {/* Activity Heatmap Widget */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-8"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"
           >
-            {/* This Month */}
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <Target className="w-6 h-6 text-red-500" />
-                <h3 className="text-2xl font-bold text-slate-800">This Month</h3>
-              </div>
-              
-              <Card className="border-0 shadow-md bg-white/90">
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-red-600 mb-1">
-                        {mockStravaData.monthlyStats.distance} mi
-                      </div>
-                      <div className="text-sm text-slate-500">Distance</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600 mb-1">
-                        {mockStravaData.monthlyStats.time}
-                      </div>
-                      <div className="text-sm text-slate-500">Moving Time</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-green-600 mb-1">
-                        {mockStravaData.monthlyStats.activities}
-                      </div>
-                      <div className="text-sm text-slate-500">Activities</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-orange-600 mb-1">
-                        {mockStravaData.monthlyStats.elevation} ft
-                      </div>
-                      <div className="text-sm text-slate-500">Elevation</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="flex items-center gap-3 mb-6">
+              <MapPin className="w-6 h-6 text-orange-500" />
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Activity Heatmap</h3>
             </div>
 
-            {/* Recent Achievements */}
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <Trophy className="w-6 h-6 text-yellow-500" />
-                <h3 className="text-2xl font-bold text-slate-800">Recent Achievements</h3>
-              </div>
-              
-              <div className="space-y-3">
-                {mockStravaData.achievements.map((achievement, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                  >
-                    <Card className="border-0 shadow-sm bg-gradient-to-r from-yellow-50 to-orange-50">
-                      <CardContent className="p-4">
-                        <div className="flex items-center space-x-3">
-                          <Trophy className="w-5 h-5 text-yellow-600" />
-                          <div>
-                            <h4 className="font-semibold text-slate-800 text-sm">
-                              {achievement.name}
-                            </h4>
-                            <p className="text-xs text-slate-500">{achievement.date}</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+            <div className="aspect-video bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg mb-6 flex items-center justify-center">
+              <div className="text-center">
+                <MapPin className="w-12 h-12 text-orange-500 mx-auto mb-2" />
+                <p className="text-gray-600 dark:text-gray-300">Interactive Activity Map</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Explore my running and cycling routes</p>
               </div>
             </div>
+
+            <a
+              href="https://www.strava.com/athletes/your-athlete-id/heatmaps/your-heatmap-id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105"
+            >
+              <MapPin className="w-5 h-5" />
+              View Activity Heatmap
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </motion.div>
         </div>
 
-        {/* Call to Action */}
+        {/* Recent Activities */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"
         >
-          <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-4">Consistency Breeds Excellence</h3>
-            <p className="text-orange-100 max-w-3xl mx-auto mb-6">
-              Maintaining an active lifestyle requires the same discipline and dedication that drives 
-              success in technology projects. Every mile run and every challenge completed builds 
-              resilience and determination.
-            </p>
-            <Button 
-              variant="secondary" 
-              size="lg" 
-              className="px-8"
-              onClick={() => window.open('https://www.strava.com/athletes/110985586', '_blank')}
+          <div className="flex items-center gap-3 mb-8">
+            <TrendingUp className="w-6 h-6 text-orange-500" />
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Recent Activities</h3>
+          </div>
+
+          <div className="space-y-6">
+            {mockActivities.map((activity, index) => (
+              <motion.div
+                key={activity.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                className="flex items-center justify-between p-6 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                    <Activity className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">{activity.name}</h4>
+                    <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
+                      <Badge variant="secondary" className="text-xs">
+                        {activity.type}
+                      </Badge>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {formatDate(activity.start_date)}
+                      </span>
+                      {activity.location_city && (
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-4 h-4" />
+                          {activity.location_city}, {activity.location_state}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {formatDistance(activity.distance)}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                    <Clock className="w-4 h-4" />
+                    {formatTime(activity.moving_time)}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <a
+              href="https://www.strava.com/athletes/your-athlete-id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105"
             >
-              <Activity className="w-4 h-4 mr-2" />
-              Connect on Strava
-            </Button>
+              View All Activities
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Stats Summary */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Activity className="w-6 h-6 text-white" />
+            </div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              {mockStats.recent_run_totals.count}
+            </div>
+            <div className="text-sm text-gray-600 dark:text-gray-300">Recent Runs</div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Activity className="w-6 h-6 text-white" />
+            </div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              {mockStats.recent_ride_totals.count}
+            </div>
+            <div className="text-sm text-gray-600 dark:text-gray-300">Recent Rides</div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <TrendingUp className="w-6 h-6 text-white" />
+            </div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              {formatDistance(mockStats.recent_run_totals.distance)}
+            </div>
+            <div className="text-sm text-gray-600 dark:text-gray-300">Running Distance</div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-200 dark:border-gray-700">
+            <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Award className="w-6 h-6 text-white" />
+            </div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              {formatDistance(mockStats.recent_ride_totals.distance)}
+            </div>
+            <div className="text-sm text-gray-600 dark:text-gray-300">Cycling Distance</div>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
