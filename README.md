@@ -262,24 +262,6 @@ npm run deploy       # Deploy to configured platform
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Contact
-
-**Brandon Robinson**  
-- **Email:** brob23.br@gmail.com
-- **GitHub:** [@brob23br](https://github.com/brob23br)
-- **LinkedIn:** Available on request
-- **Location:** Charlotte, NC
-
-## 🙏 Acknowledgments
-
-- **Next.js Team** - For the amazing React framework
-- **Vercel** - For seamless deployment platform
-- **Tailwind CSS** - For utility-first CSS framework
-- **Framer Motion** - For smooth animations
-- **Radix UI** - For accessible component primitives
-
 ---
-
-**Built with ❤️ by Brandon Robinson**
 
 *This portfolio demonstrates modern web development practices, cloud deployment expertise, and professional presentation skills. It serves as both a showcase of technical abilities and a platform for career advancement in cloud computing and solutions architecture.*
