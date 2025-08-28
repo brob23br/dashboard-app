@@ -58,7 +58,7 @@ const jeepingMedia = [
   {
     type: 'image',
     src: '/images/trail-mountain.jpg',
-    alt: 'Red Jeep on mountain trail with scenic backdrop',
+    alt: 'Peanut butter conditions',
     caption: 'Making sure the winch works'
   },
   {
@@ -76,7 +76,7 @@ const jeepingMedia = [
   {
     type: 'image',
     src: '/images/mud-terrain.jpg',
-    alt: 'Off-road action shot through muddy terrain',
+    alt: 'Trail entry',
     caption: 'Shakedown at Uhwarrie'
   },
   {
@@ -100,7 +100,7 @@ const jeepingMedia = [
   {
     type: 'image',
     src: '/images/amos-jeep.jpg',
-    alt: 'Jeep community gathering and friendship',
+    alt: 'Supervisor Amos',
     caption: 'Supervisor Amos'
   },
   {
@@ -139,7 +139,7 @@ const jeepingMedia = [
     type: 'video',
     src: '/videos/slow-descent.mp4',
     alt: 'Controlled descent on steep terrain',
-    caption: 'Technical slow (scrapging) descent'
+    caption: 'Technical slow (scraping) descent'
   }
 ]
 
@@ -217,7 +217,7 @@ export default function Interests() {
             <p className="text-slate-600 max-w-2xl mx-auto">
               A comprehensive visual journey through jeeping adventures, featuring action-packed videos
               and stunning photography that showcase the thrill of off-road exploration, technical challenges,
-              and the camaraderie of the jeeping community.
+              and the camaraderie of the off-road community.
             </p>
           </div>
 
@@ -342,8 +342,8 @@ export default function Interests() {
                 <div className="text-slate-300">Years of Jeeping</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-400 mb-2">50+</div>
-                <div className="text-slate-300">Trails Explored</div>
+                <div className="text-4xl font-bold text-blue-400 mb-2">1</div>
+                <div className="text-slate-300">Eye-witnessed vehicle rolls</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-green-400 mb-2">∞</div>
