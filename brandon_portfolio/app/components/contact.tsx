@@ -129,10 +129,7 @@ export default function Contact() {
           className="text-center mt-16 pt-8 border-t border-slate-200"
         >
           <p className="text-slate-500 text-sm">
-            © 2025 Brandon Robinson. Built with Next.js, hosted on AWS. 
-          </p>
-          <p className="text-slate-400 text-xs mt-2">
-            Designed for optimal performance and accessibility.
+            © 2025 Brandon Robinson. Built with Next.js, hosted on Vercel. 
           </p>
         </motion.div>
       </div>
