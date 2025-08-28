@@ -62,8 +62,6 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center mb-12"
           >
-            <h3 className="text-2xl font-bold text-slate-800 mb-8">Get In Touch</h3>
-            
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {contactInfo.map((item, index) => (
                 <motion.div
@@ -104,8 +102,8 @@ export default function Contact() {
             >
               <h4 className="text-xl font-semibold mb-4">Ready to Collaborate?</h4>
               <p className="text-blue-100 mb-6 leading-relaxed">
-                Whether you're looking for cloud architecture expertise, need help with AWS implementations, 
-                or want to discuss emerging technologies, I'm excited to explore opportunities together.
+                Whether you're looking for cloud architecture expertise, 
+                need help with AWS implementations, want to discuss emerging technologies, or chat about off-roading, I'm excited to explore opportunities together.
               </p>
               <div className="flex justify-center space-x-8 text-sm">
                 <div className="flex items-center space-x-2">
