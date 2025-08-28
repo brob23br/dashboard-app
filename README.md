@@ -1,4 +1,4 @@
-# Brandon Robinson - Personal Portfolio
+#Personal Portfolio
 
 A modern, responsive personal portfolio website showcasing professional experience, technical projects, and achievements. Built with Next.js 14, TypeScript, and deployed on Vercel with custom domain integration.
 
