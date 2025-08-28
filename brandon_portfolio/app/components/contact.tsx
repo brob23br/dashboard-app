@@ -48,10 +48,6 @@ export default function Contact() {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
             Let's Connect
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Interested in discussing cloud solutions, collaboration opportunities, or just want to connect? 
-            I'd love to hear from you and explore how we can work together.
-          </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
