@@ -4,11 +4,6 @@ A modern, responsive personal portfolio website showcasing professional experien
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen) ![Next.js](https://img.shields.io/badge/Next.js-14-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC)
 
-## 🚀 Live Demo
-
-**Website:** [Your Custom Domain] (Hosted on Vercel with Route53)  
-**Repository:** [GitHub - brob23br](https://github.com/brob23br)
-
 ## 📋 Table of Contents
 
 - [Features](#features)
@@ -105,85 +100,6 @@ dashboard-app/
 │   └── DEPLOYMENT_STATUS.md     # Current status
 └── brandon_portfolio_content.json # Portfolio data
 ```
-
-## 🚀 Getting Started
-
-### Prerequisites
-- **Node.js:** v18.0.0 or v20.0.0+
-- **npm:** v8.0.0+ (or yarn/pnpm)
-- **Git:** Latest version
-
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/brob23br/portfolio.git
-   cd portfolio/dashboard-app
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   cd brandon_portfolio/app
-   npm install --legacy-peer-deps
-   ```
-
-3. **Start development server:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser:**
-   ```
-   http://localhost:3000
-   ```
-
-### Environment Setup
-
-Create a `.env.local` file in the `app` directory:
-
-```env
-# Optional: Add environment variables for external APIs
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_STRAVA_CLIENT_ID=your_strava_client_id
-NEXT_PUBLIC_CONTACT_EMAIL=your_email@example.com
-```
-
-## 🚀 Deployment
-
-### Option 1: Vercel (Recommended)
-
-1. **Connect to Vercel:**
-   - Import project from GitHub
-   - Configure build settings:
-     - Build Command: `cd brandon_portfolio/app && npm install --legacy-peer-deps && npm run build`
-     - Output Directory: `brandon_portfolio/app/.next`
-
-2. **Custom Domain:**
-   - Add your Route53 domain in Vercel dashboard
-   - Update DNS records as instructed
-
-### Option 2: AWS S3 + CloudFront
-
-1. **Build static export:**
-   ```bash
-   cd brandon_portfolio/app
-   npm run build
-   ```
-
-2. **Deploy using script:**
-   ```bash
-   # Linux/Mac
-   chmod +x ../../deploy-static.sh
-   ../../deploy-static.sh
-   
-   # Windows
-   ../../deploy-static.bat
-   ```
-
-### Option 3: Manual Deployment
-
-See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions.
-
 ## 🧩 Components Overview
 
 ### Core Components
