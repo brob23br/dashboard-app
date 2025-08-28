@@ -59,13 +59,13 @@ const jeepingMedia = [
     type: 'image',
     src: '/images/trail-mountain.jpg',
     alt: 'Red Jeep on mountain trail with scenic backdrop',
-    caption: 'Trail exploration in the mountains'
+    caption: 'Making sure the winch works'
   },
   {
     type: 'image',
     src: '/images/scenic-overlook.jpg',
     alt: 'Jeep positioned at scenic mountain overlook',
-    caption: 'Breathtaking scenic overlook adventure'
+    caption: 'Dickey Bell descent'
   },
   {
     type: 'image',
@@ -77,13 +77,13 @@ const jeepingMedia = [
     type: 'image',
     src: '/images/mud-terrain.jpg',
     alt: 'Off-road action shot through muddy terrain',
-    caption: 'Tackling challenging muddy terrain'
+    caption: 'Shakedown at Uhwarrie'
   },
   {
     type: 'image',
     src: '/images/dirty-jeep.jpg',
     alt: 'Muddy Jeep after successful trail adventure',
-    caption: 'Battle scars from an epic trail day'
+    caption: 'Rainy, muddy trail day'
   },
   {
     type: 'image',
@@ -95,19 +95,19 @@ const jeepingMedia = [
     type: 'image',
     src: '/images/spring-compressor.jpg',
     alt: 'Mechanical work and vehicle maintenance',
-    caption: 'Hands-on vehicle modifications'
+    caption: 'Non-Osha approved vehicle modifications'
   },
   {
     type: 'image',
     src: '/images/amos-jeep.jpg',
     alt: 'Jeep community gathering and friendship',
-    caption: 'Building friendships through shared adventures'
+    caption: 'Supervisor Amos'
   },
   {
     type: 'image',
     src: '/images/jeep-meetup.jpg',
     alt: 'Group of Jeeps at community meetup event',
-    caption: 'Community jeep gathering and camaraderie'
+    caption: 'Building memories and friendships one trail at a time'
   },
   {
     type: 'image',
@@ -121,7 +121,7 @@ const jeepingMedia = [
     type: 'video',
     src: '/videos/rock-crawling-compressed.mp4',
     alt: 'Technical rock crawling demonstration',
-    caption: 'Precision rock crawling techniques'
+    caption: 'More skinny pedal (Dickey Bell ascent)'
   },
   {
     type: 'video',
@@ -139,7 +139,7 @@ const jeepingMedia = [
     type: 'video',
     src: '/videos/slow-descent.mp4',
     alt: 'Controlled descent on steep terrain',
-    caption: 'Technical slow descent maneuver'
+    caption: 'Technical slow (scrapging) descent'
   }
 ]
 
@@ -346,8 +346,8 @@ export default function Interests() {
                 <div className="text-slate-300">Trails Explored</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-400 mb-2">365</div>
-                <div className="text-slate-300">Days Active</div>
+                <div className="text-4xl font-bold text-green-400 mb-2">∞</div>
+                <div className="text-slate-300">Cost of Repairs</div>
               </div>
             </div>
           </div>
