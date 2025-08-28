@@ -167,7 +167,7 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-            Projects & Labs
+            Projects & Labs <b>(Section WIP)</b>
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Hands-on exploration of cloud technologies, infrastructure automation, and security implementations. 
