@@ -157,12 +157,6 @@ const jeepingMedia = [
   // NEW IMAGES - From converted HEIC files (✅ CONVERTED!)
   {
     type: 'image',
-    src: '/images/afternoon-scenic-view.jpg',
-    alt: 'Afternoon scenic mountain view',
-    caption: 'Breathtaking afternoon mountain scenery'
-  },
-  {
-    type: 'image',
     src: '/images/afternoon-trail-stop.jpg',
     alt: 'Afternoon trail rest stop',
     caption: 'Taking a break during afternoon adventures'
@@ -176,8 +170,8 @@ const jeepingMedia = [
   {
     type: 'image',
     src: '/images/evening-trail-view.jpg',
-    alt: 'Evening trail scenic view',
-    caption: 'Beautiful evening trail vistas'
+    alt: 'I don\'t think it works that way',
+    caption: 'Whoops'
   },
   {
     type: 'image',
