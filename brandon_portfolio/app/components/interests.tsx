@@ -116,6 +116,76 @@ const jeepingMedia = [
     caption: 'Rest and reflection in nature'
   },
 
+  // NEW IMAGES - Recently added from compressed media
+  {
+    type: 'image',
+    src: '/images/morning-adventure.jpg',
+    alt: 'Early morning trail adventure',
+    caption: 'Starting the day with an adventure'
+  },
+  {
+    type: 'image',
+    src: '/images/early-morning-trail.jpg',
+    alt: 'Early morning trail exploration',
+    caption: 'Exploring new trails at sunrise'
+  },
+  {
+    type: 'image',
+    src: '/images/midday-exploration.jpg',
+    alt: 'Midday trail exploration',
+    caption: 'Discovering new paths'
+  },
+  {
+    type: 'image',
+    src: '/images/afternoon-journey.jpg',
+    alt: 'Afternoon adventure journey',
+    caption: 'Afternoon trail adventures'
+  },
+  {
+    type: 'image',
+    src: '/images/afternoon-trail-run.jpg',
+    alt: 'Afternoon trail running',
+    caption: 'Trail running in the afternoon'
+  },
+  {
+    type: 'image',
+    src: '/images/evening-adventure.jpg',
+    alt: 'Evening adventure time',
+    caption: 'Evening trail exploration'
+  },
+
+  // NEW IMAGES - From converted HEIC files (✅ CONVERTED!)
+  {
+    type: 'image',
+    src: '/images/afternoon-scenic-view.jpg',
+    alt: 'Afternoon scenic mountain view',
+    caption: 'Breathtaking afternoon mountain scenery'
+  },
+  {
+    type: 'image',
+    src: '/images/afternoon-trail-stop.jpg',
+    alt: 'Afternoon trail rest stop',
+    caption: 'Taking a break during afternoon adventures'
+  },
+  {
+    type: 'image',
+    src: '/images/late-afternoon-adventure.jpg',
+    alt: 'Late afternoon trail adventure',
+    caption: 'Late afternoon exploration and discovery'
+  },
+  {
+    type: 'image',
+    src: '/images/evening-trail-view.jpg',
+    alt: 'Evening trail scenic view',
+    caption: 'Beautiful evening trail vistas'
+  },
+  {
+    type: 'image',
+    src: '/images/sunset-trail-moment.jpg',
+    alt: 'Sunset trail moment',
+    caption: 'Capturing the perfect sunset moment'
+  },
+
   // Videos - All compressed for optimal web performance
   {
     type: 'video',
@@ -140,6 +210,20 @@ const jeepingMedia = [
     src: '/videos/slow-descent.mp4',
     alt: 'Controlled descent on steep terrain',
     caption: 'Technical slow (scraping) descent'
+  },
+
+  // NEW VIDEOS - Recently added from compressed media
+  {
+    type: 'video',
+    src: '/videos/evening-trail-action.mp4',
+    alt: 'Evening trail action footage',
+    caption: 'Dynamic evening trail adventure'
+  },
+  {
+    type: 'video',
+    src: '/videos/sunset-adventure.mp4',
+    alt: 'Sunset adventure footage',
+    caption: 'Epic sunset trail adventure'
   }
 ]
 
