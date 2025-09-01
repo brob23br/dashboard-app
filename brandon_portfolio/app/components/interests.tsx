@@ -115,8 +115,6 @@ const jeepingMedia = [
     alt: 'Taking a break during outdoor adventure',
     caption: 'Rest and reflection in nature'
   },
-
-  // NEW IMAGES - Recently added from compressed media
   {
     type: 'image',
     src: '/images/morning-adventure.jpg',
@@ -133,28 +131,26 @@ const jeepingMedia = [
     type: 'image',
     src: '/images/midday-exploration.jpg',
     alt: 'Midday trail exploration',
-    caption: 'Discovering new paths'
+    caption: 'Discovering new paths, or would be if not broken down'
   },
   {
     type: 'image',
     src: '/images/afternoon-journey.jpg',
     alt: 'Afternoon adventure journey',
-    caption: 'Afternoon trail adventures'
+    caption: 'That should buff out'
   },
   {
     type: 'image',
     src: '/images/afternoon-trail-run.jpg',
     alt: 'Afternoon trail running',
-    caption: 'Trail running in the afternoon'
+    caption: 'Looting overturned hummer'
   },
   {
     type: 'image',
     src: '/images/evening-adventure.jpg',
     alt: 'Evening adventure time',
-    caption: 'Evening trail exploration'
+    caption: 'Multi-vehicle recovery'
   },
-
-  // NEW IMAGES - From converted HEIC files (✅ CONVERTED!)
   {
     type: 'image',
     src: '/images/afternoon-trail-stop.jpg',
@@ -177,10 +173,8 @@ const jeepingMedia = [
     type: 'image',
     src: '/images/sunset-trail-moment.jpg',
     alt: 'Sunset trail moment',
-    caption: 'Capturing the perfect sunset moment'
+    caption: 'Airing up'
   },
-
-  // Videos - All compressed for optimal web performance
   {
     type: 'video',
     src: '/videos/rock-crawling-compressed.mp4',
@@ -191,7 +185,7 @@ const jeepingMedia = [
     type: 'video',
     src: '/videos/trail-action-compressed.mp4',
     alt: 'Dynamic trail adventure footage',
-    caption: 'Epic trail adventure in action'
+    caption: 'Shelf climb'
   },
   {
     type: 'video',
@@ -205,19 +199,17 @@ const jeepingMedia = [
     alt: 'Controlled descent on steep terrain',
     caption: 'Technical slow (scraping) descent'
   },
-
-  // NEW VIDEOS - Recently added from compressed media
   {
     type: 'video',
     src: '/videos/evening-trail-action.mp4',
     alt: 'Evening trail action footage',
-    caption: 'Dynamic evening trail adventure'
+    caption: 'Underweight and under-leveraged recovery attempt'
   },
   {
     type: 'video',
     src: '/videos/sunset-adventure.mp4',
     alt: 'Sunset adventure footage',
-    caption: 'Epic sunset trail adventure'
+    caption: 'Successful three vehicle recovery'
   }
 ]
 
@@ -424,7 +416,7 @@ export default function Interests() {
                 <div className="text-slate-300">Eye-witnessed vehicle rolls</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-400 mb-2">∞</div>
+                <div className="text-4xl font-bold text-green-400 mb-2">Priceless</div>
                 <div className="text-slate-300">Cost of Repairs</div>
               </div>
             </div>
