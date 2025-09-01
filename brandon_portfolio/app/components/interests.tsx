@@ -119,37 +119,43 @@ const jeepingMedia = [
     type: 'image',
     src: '/images/morning-adventure.jpg',
     alt: 'Early morning trail adventure',
-    caption: 'Starting the day with an adventure'
+    caption: 'Starting the day with an adventure',
+    rotation: 90
   },
   {
     type: 'image',
     src: '/images/early-morning-trail.jpg',
     alt: 'Early morning trail exploration',
-    caption: 'Exploring new trails at sunrise'
+    caption: 'Exploring new trails at sunrise',
+    rotation: 90
   },
   {
     type: 'image',
     src: '/images/midday-exploration.jpg',
     alt: 'Midday trail exploration',
-    caption: 'Discovering new paths, or would be if not broken down'
+    caption: 'Discovering new paths, or would be if not broken down',
+    rotation: 90
   },
   {
     type: 'image',
     src: '/images/afternoon-journey.jpg',
     alt: 'Afternoon adventure journey',
-    caption: 'That should buff out'
+    caption: 'That should buff out',
+    rotation: 90
   },
   {
     type: 'image',
     src: '/images/afternoon-trail-run.jpg',
     alt: 'Afternoon trail running',
-    caption: 'Looting overturned hummer'
+    caption: 'Looting overturned hummer',
+    rotation: 90
   },
   {
     type: 'image',
     src: '/images/evening-adventure.jpg',
     alt: 'Evening adventure time',
-    caption: 'Multi-vehicle recovery'
+    caption: 'Multi-vehicle recovery',
+    rotation: 90
   },
   {
     type: 'image',
