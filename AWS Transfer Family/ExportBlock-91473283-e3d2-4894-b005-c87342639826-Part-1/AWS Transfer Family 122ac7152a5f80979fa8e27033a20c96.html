@@ -1,0 +1,690 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AWS Transfer Family</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="122ac715-2a5f-8097-9fa8-e27033a20c96" class="page sans"><header><img class="page-cover-image" 
+	src="AWS Transfer Family Banner.webp" style="object-position:center 25.09%"/><h1 class="page-title">AWS Transfer Family</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><div data-testid="/icons/list_gray.svg" style="width:14px;height:14px;flex-shrink:0;transform:scale(1.2);mask:url(/icons/list_gray.svg?mode=light) no-repeat center;-webkit-mask:url(/icons/list_gray.svg?mode=light) no-repeat center;background-color:rgba(71, 70, 68, 0.6);fill:rgba(71, 70, 68, 0.6)"></div></span>Tags</th><td><span class="selected-value select-value-color-green">AWS</span><span class="selected-value select-value-color-brown">AWS Solutions Architect Associate</span><span class="selected-value select-value-color-green">S3</span><span class="selected-value select-value-color-blue">sftp</span><span class="selected-value select-value-color-blue">ssh</span></td></tr></tbody></table></header><div class="page-body"><p id="9dfa43b8-ce17-4c55-90b5-5d156f9325a4" class="">We will be creating a SFTP server and connecting to it via SSH.</p><p id="94add855-e20d-49f7-9ab4-b30733439082" class="">Before we dive into the steps, let&#x27;s briefly overview the AWS Transfer Family service:</p><p id="4b1e8e4a-f66d-4aa3-b21a-f8020b84e116" class="">AWS Transfer Family is a fully managed service that enables the secure transfer of files over SFTP, FTPS, and FTP protocols directly into and out of Amazon S3 or Amazon EFS. Key features include:</p><ul id="0c99c660-6729-4ad9-8d74-782cbf2d92cf" class="bulleted-list"><li style="list-style-type:disc">Seamless integration with existing authentication systems</li></ul><ul id="fde0a0d6-0c66-4256-8f49-218fc8642650" class="bulleted-list"><li style="list-style-type:disc">Support for multiple protocols (SFTP, FTPS, FTP)</li></ul><ul id="ca8d6bf0-904e-4320-ba33-cda530ed9c52" class="bulleted-list"><li style="list-style-type:disc">Automatic scaling to meet your file transfer demands</li></ul><ul id="c278d6b2-f156-43e4-8e03-2f30ee7934a2" class="bulleted-list"><li style="list-style-type:disc">End-to-end encryption for data in transit and at rest</li></ul><ul id="6652ad34-17b9-45a1-97c6-10e4130a7a22" class="bulleted-list"><li style="list-style-type:disc">Detailed CloudWatch metrics and logs for monitoring</li></ul><ul id="28c70d15-24f6-459d-8c81-476cceb78140" class="bulleted-list"><li style="list-style-type:disc">Integration with AWS services like S3, EFS, IAM, and Route 53</li></ul><p id="035a0ae8-d6c9-4bd2-84e5-a757c8836740" class="">This service is particularly useful for organizations that need to maintain compliance with data transfer regulations while modernizing their file transfer workflows. It eliminates the need to manage your own file transfer infrastructure, reducing operational overhead and improving security.</p><p id="c4bdfdb1-15da-4647-9505-f7e8c4f47417" class="">Now, let&#x27;s proceed with setting up our SFTP server using AWS Transfer Family:</p><ol type="1" id="d189a7dd-88d2-4e4e-ad54-d33f31fc4463" class="numbered-list" start="1"><li>On the AWS Management console, navigate to S3. An empty S3 bucket will be needed which was created in a preceding demo. <a href="https://www.notion.so/AWS-Storage-Services-109ac7152a5f8020a126c9ccb894dd40?pvs=21">https://www.notion.so/AWS-Storage-Services-109ac7152a5f8020a126c9ccb894dd40?pvs=4</a> .</li></ol><figure id="54bc4116-e5a9-4482-a270-5c94276c96ff" class="image"><a href="image.png"><img style="width:707.9910888671875px" src="image.png"/></a></figure><ol type="1" id="89d4a865-fb83-4cf3-bf8d-6a098028120f" class="numbered-list" start="2"><li>We need to create a role that will be applied to the bucket. This will be done with IAM. Navigate to IAM and then select Roles on the left pane.</li></ol><figure id="3b99e684-d002-4e86-857e-143eaa423e74" class="image"><a href="image%201.png"><img style="width:2560px" src="image%201.png"/></a></figure><ol type="1" id="acd645e5-3e42-4896-ac41-4720b7c46833" class="numbered-list" start="3"><li>Select Create Role</li></ol><figure id="5a61b865-c5c2-469a-b868-7c6b66918228" class="image"><a href="image%202.png"><img style="width:2560px" src="image%202.png"/></a></figure><ol type="1" id="4f853fca-6035-4752-b9a2-b0964401c97f" class="numbered-list" start="4"><li>Under Trusted Entity type, select AWS Service. Then under Use Case, select EC2. Click Next</li></ol><figure id="66077867-562d-4fa7-96f2-0cb8a0962559" class="image"><a href="image%203.png"><img style="width:2560px" src="image%203.png"/></a></figure><ol type="1" id="3a42d106-072c-425f-8bc0-9a4aa52a2ba8" class="numbered-list" start="5"><li>For permissions, search for AmazonS3FullAccess. Click Next</li></ol><figure id="dc6f0a9f-1da2-44c0-9e16-9f7ec6954684" class="image"><a href="image%204.png"><img style="width:2560px" src="image%204.png"/></a></figure><ol type="1" id="7cd65d59-86e6-4f87-a595-966fd296b1c5" class="numbered-list" start="6"><li>Name the Role to help distinguish what it will be used for. Click Create Role</li></ol><figure id="c045e9ce-ed3b-419b-a700-eec7cb9df486" class="image"><a href="image%205.png"><img style="width:875.419677734375px" src="image%205.png"/></a></figure><ol type="1" id="1b6080c3-c756-4da6-be0c-48579245a88b" class="numbered-list" start="7"><li>Once created, search for and select the role</li></ol><figure id="e6cdbd50-e3f8-45fc-b641-ea0456ee6cc2" class="image"><a href="image%206.png"><img style="width:2560px" src="image%206.png"/></a></figure><ol type="1" id="3972e6ed-c5f8-4c78-ba0b-4942ac9692b9" class="numbered-list" start="8"><li>Under the Summary section, select Trust relationships.</li></ol><figure id="96625e7f-78ea-4b1a-aee3-966f2eb0e193" class="image"><a href="image%207.png"><img style="width:2560px" src="image%207.png"/></a></figure><ol type="1" id="ae26e094-e088-4d6e-83b6-57072facf25d" class="numbered-list" start="9"><li>Click Edit Trust Policy. Edit the Service key value to “transfer.amazonaws.com”. Click Update policy</li></ol><figure id="d6eab800-1bba-4cb4-b2ef-47a9c11652fe" class="image"><a href="image%208.png"><img style="width:2560px" src="image%208.png"/></a></figure><figure id="3544aea0-6c46-40a1-9e21-c7e0568b310c" class="image"><a href="image%209.png"><img style="width:2560px" src="image%209.png"/></a></figure><ol type="1" id="e17bc106-1e36-4b4e-918a-d8ab959c501d" class="numbered-list" start="10"><li>From the AWS Management Console, search AWS Transfer Family. We will create an SFTP transfer server. Click Create server.</li></ol><figure id="ec1ab54a-e2bb-457d-8233-f1aeb6a40e35" class="image"><a href="image%2010.png"><img style="width:2560px" src="image%2010.png"/></a></figure><ol type="1" id="21dcfc1b-72e8-4c99-9258-173111879f08" class="numbered-list" start="11"><li>For Choose Protocols, leave the default of SFTP selected.</li></ol><figure id="1a114380-c09f-4ec9-be5c-968d9fbb7d72" class="image"><a href="image%2011.png"><img style="width:2560px" src="image%2011.png"/></a></figure><ol type="1" id="5f031057-a600-46f0-af00-09f5fa8cae61" class="numbered-list" start="12"><li>For Choose an identity provider, select Service managed.</li></ol><figure id="697f5f19-a491-4380-9514-3979b0316d2e" class="image"><a href="image%2012.png"><img style="width:2560px" src="image%2012.png"/></a></figure><ol type="1" id="b76ec2fe-4fb4-4231-b5ec-f2eb4b3796d8" class="numbered-list" start="13"><li>On Choose your endpoint, choose Publicly accessible, and Custom hostname set to None.</li></ol><figure id="a22bf49a-e0cf-4650-b029-7257c852e058" class="image"><a href="image%2013.png"><img style="width:2560px" src="image%2013.png"/></a></figure><ol type="1" id="c7ba2e18-67f9-4200-9cf6-11693c79f32f" class="numbered-list" start="14"><li>For Choose a domain,, select Amazon S3.</li></ol><figure id="0f23c074-262e-4874-86ab-86c644d31bb5" class="image"><a href="image%2014.png"><img style="width:879.419677734375px" src="image%2014.png"/></a></figure><ol type="1" id="dc82692b-3d46-4ffb-8b2e-99b42ee54383" class="numbered-list" start="15"><li>Nothing will be changed on Configure additional details. Scroll down and click Next.</li></ol><figure id="b1e26a2a-9db4-4c8a-aa71-b6adde6373dd" class="image"><a href="image%2015.png"><img style="width:2560px" src="image%2015.png"/></a></figure><ol type="1" id="195ed4cd-b7a6-4121-b72c-990246634b72" class="numbered-list" start="16"><li>On Review and create, scroll down and create server.</li></ol><figure id="4bc49df2-3f1a-4295-b658-cd40cdde22d5" class="image"><a href="image%2016.png"><img style="width:2560px" src="image%2016.png"/></a></figure><ol type="1" id="94af315a-6edc-4a74-b8dc-f4ba1e476ef3" class="numbered-list" start="17"><li>Users need to be added to the server. Select the newly created server and then click Add user.</li></ol><figure id="9e937388-8a2c-445a-a982-43a9d50eec20" class="image"><a href="image%2017.png"><img style="width:879.4107666015625px" src="image%2017.png"/></a></figure><ol type="1" id="3780eaa6-1476-49a7-b449-5f105d5bfeee" class="numbered-list" start="18"><li>Add a username and then select the SFTP role we created.</li></ol><figure id="a172a8ef-a89f-43ea-b0b1-51e92aeab24f" class="image"><a href="image%2018.png"><img style="width:879.4107666015625px" src="image%2018.png"/></a></figure><ol type="1" id="14e32ac9-febb-4eaa-9827-d966d57f0016" class="numbered-list" start="19"><li>For Home Directory, select the S3 bucket created in step 1.</li></ol><figure id="00c1c95d-afa5-4f66-8b94-5a4b893ca061" class="image"><a href="image%2019.png"><img style="width:879.419677734375px" src="image%2019.png"/></a></figure><ol type="1" id="6b009c93-744f-4de6-8397-699042030d0f" class="numbered-list" start="20"><li>Next, a public key of the machine that will be used for access should be added to the SSH public key field. A tutorial on how to generate SSH keys can be found here, <a href="https://www.notion.so/SSH-keygen-697e52a4f4864a4b89b5be30db3fef5d?pvs=21">https://www.notion.so/SSH-keygen-697e52a4f4864a4b89b5be30db3fef5d?pvs=4</a> . Once your public key is added, click Add.</li></ol><figure id="dc184952-8502-44b6-a525-0f4968e30f6d" class="image"><a href="image%2020.png"><img style="width:2560px" src="image%2020.png"/></a></figure><ol type="1" id="9508bc42-92d1-44aa-9c8d-46b72e6b123c" class="numbered-list" start="21"><li>Once created, on the AWS Transfer Family console, copy the endpoint name. This is the DNS name that will be used to connect to the server.</li></ol><figure id="3a5ebeab-bc50-44dd-97cc-280925c01e4c" class="image"><a href="image%2021.png"><img style="width:2560px" src="image%2021.png"/></a></figure><ol type="1" id="4df42a97-9adb-4d16-8504-57c5d5585b79" class="numbered-list" start="22"><li>In a command prompt, run the command sftp -i, add the name of your private key file, and then paste the endpoint name you copied. Run the command. It will ask you if you trust the authenticity of the host. I trust this host, so will be selecting Yes</li></ol><figure id="d1f08306-3a62-423a-b7fe-24498cab706f" class="image"><a href="image%2022.png"><img style="width:879.3303833007812px" src="image%2022.png"/></a></figure><figure id="f09c430f-54ff-4a5a-a3db-3ebed850371d" class="image"><a href="image%2023.png"><img style="width:879.3660888671875px" src="image%2023.png"/></a></figure><ol type="1" id="b3c4a6ab-c060-4e78-b1c9-ee8b9308a8d6" class="numbered-list" start="23"><li>You will then be prompted for the passphrase for your SSH key file. Once authenticated, you will see SFTP. Running a print working directory command will show that we are in our S3 bucket.</li></ol><figure id="745cd93c-bac4-4ba2-bedd-60085173cfab" class="image"><a href="image%2024.png"><img style="width:879.419677734375px" src="image%2024.png"/></a></figure><figure id="de44eb36-8aed-4cf1-8eca-b3b02d271c24" class="image"><a href="image%2025.png"><img style="width:879.419677734375px" src="image%2025.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

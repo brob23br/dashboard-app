@@ -1,0 +1,694 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Creating an EC2 Virtual Machine using AWS Management Console</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d6ef0b9f-a3ed-4e4f-aa7a-71a4d7265714" class="page sans"><header><img class="page-cover-image" 
+	src="Creating an EC2 Virtual Machine using AWS Management Console.webp" style="object-position:center 50%"/><h1 class="page-title">Creating an EC2 Virtual Machine using AWS Management Console</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><div data-testid="/icons/list_gray.svg" style="width:14px;height:14px;flex-shrink:0;transform:scale(1.2);mask:url(/icons/list_gray.svg?mode=light) no-repeat center;-webkit-mask:url(/icons/list_gray.svg?mode=light) no-repeat center;background-color:rgba(71, 70, 68, 0.6);fill:rgba(71, 70, 68, 0.6)"></div></span>Tags</th><td><span class="selected-value select-value-color-green">AWS</span><span class="selected-value select-value-color-orange">AWS Cloud Practitioner</span><span class="selected-value select-value-color-brown">EC2</span><span class="selected-value select-value-color-pink">RDP</span><span class="selected-value select-value-color-blue">Windows</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><div data-testid="/icons/description_gray.svg" style="width:14px;height:14px;flex-shrink:0;transform:scale(1.2);mask:url(/icons/description_gray.svg?mode=light) no-repeat center;-webkit-mask:url(/icons/description_gray.svg?mode=light) no-repeat center;background-color:rgba(71, 70, 68, 0.6);fill:rgba(71, 70, 68, 0.6)"></div></span>Subjects</th><td>Precipio Labs</td></tr></tbody></table></header><div class="page-body"><h1 id="ef5494ee-6e1e-4b5b-81e9-b44d6d37997b" class="">Overview</h1><p id="7af4608a-a9ec-46c5-a330-bd2030f37bdf" class=""><strong>Amazon Web Services (AWS)</strong> enables users to create virtual machines on its public cloud infrastructure. Known as <strong>Infrastructure as a</strong> Service (<strong>IaaS</strong>), it offers a highly scalable environment for provisioning virtual machines across various AWS regions. The <strong>Elastic Compute Cloud (EC2)</strong> service is responsible for creating these virtual devices.</p><p id="fc26c805-8fc1-4453-a203-78f84cec175c" class="">To facilitate communication between virtual devices on the AWS Cloud Platform, a <strong>Virtual Private Cloud (VPC)</strong> must be established.</p><p id="2bc42473-4371-4f85-a4cb-7be33c466843" class="">In this exercise, we&#x27;ll create a <strong>Virtual Private Cloud</strong> using the <strong>Networking &amp; Content Delivery Service</strong>, and set up a virtual machine using <strong>EC2 Services</strong> in the <strong>AWS Management Console</strong>.</p><h2 id="e2dd8d78-ff82-4465-9b35-c0579c909fb5" class="">Task 1 - Create a VPC</h2><h3 id="bb05aaec-4fd2-436f-96b4-f83687d9fe4c" class="">Virtual Private Cloud</h3><p id="41d3ef27-2c49-4f68-8b81-24dd06a920f2" class="">An AWS Virtual Private Cloud (VPC) is a logically isolated section of the AWS cloud where you can launch AWS resources in a virtual network that you define. It provides control over your virtual networking environment, including selection of your own IP address range, creation of subnets, and configuration of route tables and network gateways.</p><p id="73339f6a-7835-4013-ae6f-f8b0424cf889" class="">Key features of AWS VPC include:</p><ul id="b13a01df-240e-4675-ad2d-916401d40062" class="bulleted-list"><li style="list-style-type:disc">Complete control over your virtual networking environment</li></ul><ul id="85081649-bfc4-478a-a3da-06c7c67b9544" class="bulleted-list"><li style="list-style-type:disc">Ability to secure your AWS resources</li></ul><ul id="48f27e2a-390f-4a14-9cd6-1237e3074fd6" class="bulleted-list"><li style="list-style-type:disc">Multiple connectivity options to connect your VPC to other networks</li></ul><ul id="9fe9ccd0-9f89-42b0-9fc4-e97cb7043b4c" class="bulleted-list"><li style="list-style-type:disc">Customizable network configuration</li></ul><ul id="8d45a60e-b927-421e-ae69-d9174f8beca5" class="bulleted-list"><li style="list-style-type:disc">Scalability to support your growing infrastructure needs</li></ul><p id="0910eb32-1bde-4563-9084-522f43eb45af" class="">VPCs are fundamental to network security and resource isolation in AWS, allowing you to build a secure and scalable cloud infrastructure.</p><ol type="1" id="b8b76306-d8a0-46d1-ac91-edc494fcb2b5" class="numbered-list" start="1"><li>First a VPC must be made. From Services, navigate to Networking &amp; Content Delivery and then select VPC.</li></ol><figure id="7eda4bf5-70aa-4208-8db3-5804a00e1d6b" class="image"><a href="image.png"><img style="width:768px" src="image.png"/></a></figure><ol type="1" id="e69d2405-b2e7-4e9d-bdc8-3e5b051344ca" class="numbered-list" start="2"><li>Select Create VPC.</li></ol><figure id="e08de445-0d14-4c5f-92a9-b848b680197f" class="image"><a href="image%201.png"><img style="width:720px" src="image%201.png"/></a></figure><ol type="1" id="6531a725-02f9-4a31-9126-f18891701209" class="numbered-list" start="3"><li>Select VPC and more. Complete the following fields:</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="97ad7caf-1af4-45f0-8692-bffd8f24d542" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Name tag auto-generation: projectvpc321
+IPv4 CIDR block:   172.16.0.0/16
+Number of Availability Zones (AZs): 1
+NAT gateways ($): In 1 AZ
+VPC endpoints: S3 Gateway</code></pre><figure id="cc837cd5-6d98-46a6-a2e9-1887c14ed16f" class="image"><a href="image%202.png"><img style="width:720px" src="image%202.png"/></a></figure><figure id="6e5a91c7-4515-4d32-8df2-82638a548bff" class="image"><a href="image%203.png"><img style="width:720px" src="image%203.png"/></a></figure><ol type="1" id="30e75f41-85d6-4631-8d3d-791217141c27" class="numbered-list" start="4"><li>Click Create VPC. It may take some time for the VPC to be created.</li></ol><figure id="f34f1a62-708a-4885-8826-56f9952e3342" class="image"><a href="image%204.png"><img style="width:720px" src="image%204.png"/></a></figure><ol type="1" id="d29c4700-0824-4b0f-a238-46d3c0f19013" class="numbered-list" start="5"><li>Once created, return to the VPC dashboard and select Subnets in the left pane.</li></ol><figure id="51948298-2858-4fb3-8990-136580c82f32" class="image"><a href="image%205.png"><img style="width:672px" src="image%205.png"/></a></figure><ol type="1" id="0b6b20bd-6884-480a-bb81-c31809929bf0" class="numbered-list" start="6"><li>You should see that two subnets were created.</li></ol><p id="f776c85d-6682-4758-8302-854328aa1d81" class="">When creating a VPC using the &quot;VPC and more&quot; option in AWS, two subnets are typically created by default for the following reasons:</p><ul id="e949d75e-028b-465f-a212-2172f3195d73" class="bulleted-list"><li style="list-style-type:disc">High Availability: AWS recommends using multiple subnets across different Availability Zones (AZs) for redundancy and fault tolerance. By creating two subnets, AWS ensures that your resources can be distributed across multiple AZs.</li></ul><ul id="1d2417c1-ff97-403e-84af-11fddb96ad01" class="bulleted-list"><li style="list-style-type:disc">Public and Private Subnets: Often, one subnet is configured as public (with internet access) and the other as private (for internal resources). This setup allows for a more secure network architecture.</li></ul><ul id="7008d65c-aa94-4140-99f8-cd9cb74640c7" class="bulleted-list"><li style="list-style-type:disc">Network Segmentation: Having multiple subnets allows for better organization and segmentation of resources based on their roles or security requirements.</li></ul><ul id="039a6464-4289-43b7-91e9-546f5eb61a32" class="bulleted-list"><li style="list-style-type:disc">Scalability: Multiple subnets provide room for future growth and expansion of your network infrastructure.</li></ul><p id="d44fc2cb-ba42-4d7f-a6a3-1fb853ff6bb7" class="">In this case, since we specified &quot;Number of Availability Zones (AZs): 1&quot; in our VPC creation settings, both subnets are likely in the same AZ. However, they can still serve different purposes (e.g., public and private) within that single AZ.</p><figure id="5c84eae9-cc25-43b4-aa4e-2181d2b08639" class="image"><a href="image%206.png"><img style="width:1248px" src="image%206.png"/></a></figure><h2 id="ded0c6a6-5800-4a48-be9c-05ba6294d8ba" class="">Task 2 - Create a Virtual Machine in the AWS Management Console</h2><p id="bb61efde-d016-43fc-8d9f-f85b1abba0e4" class="">Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers. Amazon EC2&#x27;s simple web service interface allows you to obtain and configure capacity with minimal friction.</p><p id="d5d0bcc4-5af6-4304-9843-5518f7ed7b8c" class="">Key features of Amazon EC2 include:</p><ul id="84d680c8-0fde-4df0-8b24-082091347783" class="bulleted-list"><li style="list-style-type:disc">Elastic: You can increase or decrease capacity within minutes, not hours or days.</li></ul><ul id="c39daf42-b3c6-4bc3-aa6d-206ef7235376" class="bulleted-list"><li style="list-style-type:disc">Flexible: You have complete control of your instances. You can select the capacity you need, choose from multiple instance types, operating systems, and software packages.</li></ul><ul id="a197869f-0d1c-4a47-886e-ae3661204cf6" class="bulleted-list"><li style="list-style-type:disc">Inexpensive: Amazon EC2 passes on the financial benefits of Amazon&#x27;s scale. You pay a very low rate for the compute capacity you actually consume.</li></ul><ul id="9783420e-a758-45a3-955b-39297c899089" class="bulleted-list"><li style="list-style-type:disc">Reliable: Amazon EC2 offers a highly reliable environment where replacement instances can be rapidly and predictably commissioned.</li></ul><ul id="48f0ad1f-6e7c-4872-bb13-bdb47e348006" class="bulleted-list"><li style="list-style-type:disc">Secure: Amazon EC2 works in conjunction with Amazon VPC to provide security and robust networking functionality.</li></ul><p id="5b5d396f-7589-44c2-b08e-72eb0f317add" class="">Amazon EC2 is a fundamental component of Amazon&#x27;s cloud computing platform, allowing businesses of all sizes to run their applications on Amazon&#x27;s proven computing environment.</p><ol type="1" id="415be2a7-c145-4b18-abb4-a6a944c44f6b" class="numbered-list" start="1"><li>From Services, navigate to Compute, then EC2.</li></ol><figure id="2ad52e2b-e0ef-445f-a34b-d733c69bab96" class="image"><a href="image%207.png"><img style="width:672px" src="image%207.png"/></a></figure><ol type="1" id="e5c0ba6b-53e7-4454-a4ff-d6e1f44c2140" class="numbered-list" start="2"><li>Select Launch instance.</li></ol><figure id="857d43b2-e881-46ab-9960-8a20d26f749d" class="image"><a href="image%208.png"><img style="width:720px" src="image%208.png"/></a></figure><ol type="1" id="021ab349-80b8-41aa-b351-0f8a608e3e8c" class="numbered-list" start="3"><li>Name instance.</li></ol><figure id="ea07cd8f-74ac-436c-89bb-4d693339c457" class="image"><a href="image%209.png"><img style="width:1248px" src="image%209.png"/></a></figure><ol type="1" id="39f18f4d-feee-4341-a277-d8ed862ad1a3" class="numbered-list" start="4"><li>Under Application and OS images (Amazon Machine Image), select Windows. Keep t2.micro as the instance type.</li></ol><figure id="67d96112-294c-422e-9e81-dbc846323654" class="image"><a href="image%2010.png"><img style="width:1248px" src="image%2010.png"/></a></figure><ol type="1" id="175e3758-b961-4e94-8aac-61afee8bc153" class="numbered-list" start="5"><li>For Key pair (login), select Create new key pair.</li></ol><figure id="c08fb5a3-2b96-4e0b-8555-424b86f999de" class="image"><a href="image%2011.png"><img style="width:1248px" src="image%2011.png"/></a></figure><ol type="1" id="5d4a6ab3-3102-45a0-8045-ad6a4f146651" class="numbered-list" start="6"><li>Name your key pair. Key pair name must be unique. Once named, click Create key pair.</li></ol><figure id="31b6e495-81ee-4777-b00c-bff42b65281b" class="image"><a href="image%2012.png"><img style="width:1200px" src="image%2012.png"/></a></figure><ol type="1" id="399bd2c1-b515-487c-8d61-6054ac4aec7c" class="numbered-list" start="7"><li>Back on the EC2 creation page, click edit on Network settings.</li></ol><figure id="1662ad8d-9a34-41dc-81e8-f049d2c04fa3" class="image"><a href="image%2013.png"><img style="width:1200px" src="image%2013.png"/></a></figure><ol type="1" id="fbfc0d52-8af8-4e4f-85d7-9bd058a32320" class="numbered-list" start="8"><li>Select our previously created VPC. In subnet, select the subnet that was created along with our VPC.</li></ol><figure id="2de0af02-e671-44f3-aeef-e8cb8e747605" class="image"><a href="image%2014.png"><img style="width:1200px" src="image%2014.png"/></a></figure><ol type="1" id="a842701b-e9b1-4a7e-ab93-9a3dde2ead27" class="numbered-list" start="9"><li>Select Enable for Auto-assign public IP. </li></ol><figure id="e334aa79-3c6d-4425-a468-c42e7ab3914d" class="image"><a href="image%2015.png"><img style="width:1248px" src="image%2015.png"/></a></figure><ol type="1" id="ce5caad7-23b4-451d-be26-8846d201a3a0" class="numbered-list" start="10"><li>Everything else remains on default. You may now launch the instance.</li></ol><figure id="dc83df0c-37ba-4e13-afaa-97d070340c54" class="image"><a href="image%2016.png"><img style="width:1248px" src="image%2016.png"/></a></figure><ol type="1" id="b7737850-22de-4cf2-941e-79994b2fddf6" class="numbered-list" start="11"><li>Return to the EC2 dashboard page and then select the instance and then Connect.</li></ol><figure id="db67568d-5c5f-4226-a45b-abffafd22e9f" class="image"><a href="image%2017.png"><img style="width:1248px" src="image%2017.png"/></a></figure><ol type="1" id="e1955169-e92c-46cd-892a-abafbe7c1a11" class="numbered-list" start="12"><li>On the Connect to instance page, select RDP Client.</li></ol><figure id="52ca18d9-167e-45a0-b66f-c2f62486f8b0" class="image"><a href="image%2018.png"><img style="width:1200px" src="image%2018.png"/></a></figure><ol type="1" id="088c458f-318d-4f13-b5b0-d4c4dbf8492c" class="numbered-list" start="13"><li>Scroll down to Get password.</li></ol><figure id="b71ac292-ab1c-44b9-bb24-360555dababb" class="image"><a href="image%2019.png"><img style="width:1200px" src="image%2019.png"/></a></figure><ol type="1" id="1944b257-e546-41e7-9c1f-8281403a5654" class="numbered-list" start="14"><li>On the Get Windows password page, select Upload private key file. Then navigate to the key pair file we created earlier.</li></ol><figure id="2cab2b01-1689-488b-a599-474994cb93f1" class="image"><a href="image%2020.png"><img style="width:1200px" src="image%2020.png"/></a></figure><figure id="55b0ee5a-b4b6-4efb-8d22-46c17934775a" class="image"><a href="image%2021.png"><img style="width:1200px" src="image%2021.png"/></a></figure><ol type="1" id="a7301865-4711-40d6-af5e-c01c67c23fc3" class="numbered-list" start="15"><li>Once the file is uploaded, select Decrypt password.</li></ol><figure id="f04eecdd-c97a-44f8-923c-d7895b700a75" class="image"><a href="image%2022.png"><img style="width:1200px" src="image%2022.png"/></a></figure><ol type="1" id="3c59a548-c656-4452-b1d8-f4b5245e7ccc" class="numbered-list" start="16"><li>On the RDP tab, copy the generated password, then click Download remote desktop file.</li></ol><figure id="e1fe622e-d5f2-49b2-9e11-659b3675dd5a" class="image"><a href="image%2023.png"><img style="width:1200px" src="image%2023.png"/></a></figure><ol type="1" id="3cd9116e-3ec0-44bd-bceb-82f5251f0837" class="numbered-list" start="17"><li>Click the downloaded remote desktop file in the download pop-up window. </li></ol><figure id="00b5485b-7789-40c5-afe8-50f677390134" class="image"><a href="image%2024.png"><img style="width:1200px" src="image%2024.png"/></a></figure><ol type="1" id="b728d51e-12eb-46ae-8af6-4cf7560089f9" class="numbered-list" start="18"><li>Click connect.</li></ol><figure id="e8f53283-e3fd-4d95-bb6e-00903b3e81ef" class="image"><a href="image%2025.png"><img style="width:1200px" src="image%2025.png"/></a></figure><ol type="1" id="fc151702-3b95-4301-8d80-6f36c74abfdc" class="numbered-list" start="19"><li>Paste the password that we copied earlier.</li></ol><figure id="86ff348c-8bb9-4dd8-a0d2-91b6db9645ba" class="image"><a href="image%2026.png"><img style="width:1200px" src="image%2026.png"/></a></figure><ol type="1" id="3545186b-af36-4b69-81c9-c1c4d445db0d" class="numbered-list" start="20"><li>Click Yes on the Remote Desktop Connection window.</li></ol><figure id="d50f7ce1-eb9d-442a-8f7a-d8d790f1c9ca" class="image"><a href="image%2027.png"><img style="width:1200px" src="image%2027.png"/></a></figure><ol type="1" id="65a208d1-2a88-4825-b88e-e44c9f28545f" class="numbered-list" start="21"><li>We have successfully connected to our EC2 instance.</li></ol><figure id="a4aaf85e-8dde-47c6-99cc-9181ecf6659f" class="image"><a href="image%2028.png"><img style="width:1200px" src="image%2028.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

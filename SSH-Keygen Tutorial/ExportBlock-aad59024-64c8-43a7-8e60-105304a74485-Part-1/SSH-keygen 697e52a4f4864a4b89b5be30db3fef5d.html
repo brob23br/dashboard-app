@@ -1,0 +1,698 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SSH-keygen</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="697e52a4-f486-4a4b-89b5-be30db3fef5d" class="page sans"><header><img class="page-cover-image" src="SSH Key-Gen Banner.webp" style="object-position:center 7.820000000000005%"/><h1 class="page-title">SSH-keygen</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><div data-testid="/icons/list_gray.svg" style="width:14px;height:14px;flex-shrink:0;transform:scale(1.2);mask:url(/icons/list_gray.svg?mode=light) no-repeat center;-webkit-mask:url(/icons/list_gray.svg?mode=light) no-repeat center;background-color:rgba(71, 70, 68, 0.6);fill:rgba(71, 70, 68, 0.6)"></div></span>Tags</th><td><span class="selected-value select-value-color-orange">kali</span><span class="selected-value select-value-color-red">linux</span><span class="selected-value select-value-color-green">mint</span><span class="selected-value select-value-color-blue">ssh</span><span class="selected-value select-value-color-orange">terminal</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><div data-testid="/icons/description_gray.svg" style="width:14px;height:14px;flex-shrink:0;transform:scale(1.2);mask:url(/icons/description_gray.svg?mode=light) no-repeat center;-webkit-mask:url(/icons/description_gray.svg?mode=light) no-repeat center;background-color:rgba(71, 70, 68, 0.6);fill:rgba(71, 70, 68, 0.6)"></div></span>Subjects</th><td>ssh-keygen</td></tr></tbody></table></header><div class="page-body"><h1 id="68f20f95-7e83-4aa0-8547-e3c70c573c69" class="">Overview</h1><p id="8f26c37d-ed63-4229-9553-1dde5c0df75a" class="">This demonstration will showcase the process of creating and using an SSH key pair to establish a secure connection between two Linux computers. The key points of this demonstration include:</p><ul id="f2852017-618b-4bc3-8b51-0d8fbfd6f262" class="bulleted-list"><li style="list-style-type:disc">Generating an SSH key pair on the client machine</li></ul><ul id="3048e81c-9c81-42ea-a0d5-9e9b1275d676" class="bulleted-list"><li style="list-style-type:disc">Transferring the public key to the server machine</li></ul><ul id="33934929-3d7b-44e2-b703-9306e8c14f44" class="bulleted-list"><li style="list-style-type:disc">Testing the SSH connection using the new key pair</li></ul><h2 id="0b065222-7b10-484a-8406-458523e2eb5c" class="">Benefits of SSH Key-Based Authentication</h2><p id="f92b88d9-1ce4-48e2-9dc3-8492a0153fd4" class="">SSH key-based authentication offers several advantages over traditional password-based authentication:</p><ul id="3a45eb1c-16a6-4457-9aa0-ee107fec01cb" class="bulleted-list"><li style="list-style-type:disc"><strong>Enhanced Security:</strong> SSH keys are significantly more difficult to compromise compared to passwords, providing stronger protection against brute-force attacks.</li></ul><ul id="f8b8379e-12a5-4ed5-9494-0be7797acd8e" class="bulleted-list"><li style="list-style-type:disc"><strong>Improved Convenience:</strong> Once set up, key-based authentication eliminates the need to enter passwords for each login, streamlining the connection process.</li></ul><ul id="f746d1d7-9528-4020-bf96-58d0e0eb0316" class="bulleted-list"><li style="list-style-type:disc"><strong>Automated Processes:</strong> Key-based authentication facilitates automated scripts and processes that require secure, passwordless connections.</li></ul><ul id="a2eb499f-fdb2-4557-a749-61b00e5aad18" class="bulleted-list"><li style="list-style-type:disc"><strong>Centralized Key Management:</strong> Public keys can be easily distributed and managed across multiple servers, simplifying access control for system administrators.</li></ul><ul id="2928fa2a-f162-41e0-aa99-6230632865d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Two-Factor Authentication:</strong> SSH keys can be combined with passphrases, creating a two-factor authentication system for added security.</li></ul><ul id="d52d4870-c384-43de-b274-cfefc676449f" class="bulleted-list"><li style="list-style-type:disc"><strong>Reduced Risk of Credential Theft:</strong> Since no password is transmitted during the authentication process, the risk of credential interception is minimized.</li></ul><p id="7efb2222-af48-45ea-9cb8-47728459fdaf" class="">By implementing SSH key-based authentication, users can significantly enhance the security and efficiency of their remote connections, making it a preferred method for many system administrators and developers.</p><h1 id="4f770f8c-b997-4c01-bb56-4055e17b166d" class="">Demo</h1><ol type="1" id="e09d0cff-3e6e-49b8-80d6-6d2bb4432241" class="numbered-list" start="1"><li>I will be using Kali Linux to create the ssh keys. Open terminal.</li></ol><figure id="c1917ad8-19c3-493e-b46f-e2ec0553e7a3" class="image"><a href="ce402f84-fce5-47e0-bc37-436386c91c07.png"><img style="width:576.057605760576px" src="ce402f84-fce5-47e0-bc37-436386c91c07.png"/></a></figure><ol type="1" id="a279c469-6477-4cd8-92c4-5dfce25640dd" class="numbered-list" start="2"><li>The ssh-keygen command is used to generate SSH key pairs. Here&#x27;s a brief overview of the command and its common flags:<p id="f250bf67-dcb4-45c7-ad06-c4de00dc15e2" class="">• Basic syntax: ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</p><p id="cd3b1470-c82a-44fa-b506-836a5dfba85c" class="">• -t: Specifies the type of key to create (e.g., dsa, rsa, ed25519)</p><p id="efa6f0bf-ad25-4a0c-b599-872323652797" class="">• -b: Sets the key length in bits (e.g., 4096 for RSA)</p><p id="582c8471-0b7c-4633-a68f-e4bd6fda46bb" class="">• -C: Adds a comment to the key (often an email address)</p><p id="8f6db005-f161-49e5-ac86-5b34c5807be3" class="">• -f: Specifies the filename of the key pair</p><p id="9ad68970-b821-41c5-95ac-900eb02afc9b" class="">• -N: Sets a new passphrase for the private key</p><p id="a9fa79e9-cb6b-4963-95d6-0b649d343495" class="">• -p: Changes the passphrase of an existing private key</p><p id="feda1a55-32f3-4638-9b55-357fdb5f702e" class="">Now, let&#x27;s generate an SSH key pair using the ssh-keygen command:</p></li></ol><ol type="1" id="8e93fd03-5de2-4d5f-8caf-bb0ffa6e5cfd" class="numbered-list" start="3"><li>Input the command ssh-keygen -t rsa -b 4096</li></ol><figure id="3d01691d-1041-449f-93a2-98f2e6433252" class="image"><a href="76f02c64-a55a-42b3-b1d4-d6c46298bd24.png"><img style="width:577.0964833183048px" src="76f02c64-a55a-42b3-b1d4-d6c46298bd24.png"/></a></figure><ul id="513f1cf0-3671-48cd-ab8c-a9c5ac12bede" class="bulleted-list"><li style="list-style-type:disc">You will be prompted on where to save the file. Press ENTER to save to the default path.</li></ul><ol type="1" id="3147d144-cf8d-4c5e-a528-616cbc44cf83" class="numbered-list" start="4"><li>Next, you will be prompted to enter a super secret passphrase. </li></ol><figure id="9e406466-ac5b-4968-9d0d-eb75365bfa0c" class="image"><a href="4be6a913-93a2-43aa-b6ac-91cd59fcd098.png"><img style="width:577.0964833183048px" src="4be6a913-93a2-43aa-b6ac-91cd59fcd098.png"/></a></figure><ol type="1" id="8ff6e4f5-a80f-442c-9d56-40acd09b87c7" class="numbered-list" start="5"><li>Once the passphrase is entered, the key will be created.</li></ol><figure id="b1c84d81-23df-496d-ba39-da5f28f8fdcb" class="image"><a href="5f0f4e62-abeb-4077-9383-050d12ebdf96.png"><img style="width:577.6173285198556px" src="5f0f4e62-abeb-4077-9383-050d12ebdf96.png"/></a></figure><ol type="1" id="1bbac741-320b-4cee-bf60-9c68b768f62e" class="numbered-list" start="6"><li>Now we need to copy the public key to the host you wish to connect to. This will be done using the <strong>ssh-copy-id</strong> command.</li></ol><p id="70f9d9ff-53a6-4d59-939b-d8400dfff59c" class="">The ssh-copy-id command is a utility used to copy your public SSH key to a remote server&#x27;s authorized_keys file. Here&#x27;s a brief summary of the command:</p><ul id="89da2223-6036-4e56-ab0d-e6190de05ee3" class="bulleted-list"><li style="list-style-type:disc">Syntax: <strong>ssh-copy-id [-i [identity_file]] [user@]host</strong></li></ul><ul id="c0d63a49-4337-4e0f-beab-fbf6b76cb6e9" class="bulleted-list"><li style="list-style-type:disc">Purpose: Automates the process of adding your public key to a remote server for passwordless SSH access</li></ul><ul id="90a484f8-ecf4-4f99-bd07-180146bd2eb9" class="bulleted-list"><li style="list-style-type:disc">Benefits: Simplifies key deployment and reduces the risk of manual errors</li></ul><ul id="e2b5dc7e-e0fe-4377-bab8-d36161f81b42" class="bulleted-list"><li style="list-style-type:disc">Security: Uses SSH to securely transfer the public key to the remote server</li></ul><p id="0e22b027-900a-4c49-bf31-99dfad39d18d" class="">To use ssh-copy-id, run:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2e83983b-209d-47cb-9943-e4efae3325d2" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">ssh-copy-id username@remote_host</code></pre><p id="92971a93-b719-416d-9836-7dd44f7c8b56" class="">This command will prompt for the remote user&#x27;s password, then copy your public key to the server, enabling key-based authentication for future connections.</p><figure id="97034304-1a7a-4b5f-9abe-e5f79e966108" class="image"><a href="9a75846d-fe28-4a5c-bc21-84c97aa4d6c8.png"><img style="width:577.0964833183048px" src="9a75846d-fe28-4a5c-bc21-84c97aa4d6c8.png"/></a></figure><ul id="f8da60c1-c443-4a60-b922-c85a67aaba82" class="bulleted-list"><li style="list-style-type:disc">Note that the target host initially refused the connection. This was because I did not have an SSH server installed. Ensure that you have an SSH server installed.<p id="bae7f2f5-ef9f-4b54-92e2-3662aefb6793" class="">Here are examples of how to install an SSH server on different Linux distributions:</p><ul id="90c0552c-4bb4-480b-b260-1ca572bc1d4b" class="toggle"><li><details open=""><summary>Ubuntu/Debian:</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fd6771e2-e076-4e69-bd76-2453f89e8cef" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo apt update
+sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh</code></pre></details></li></ul><ul id="c439d185-4c11-41de-bee3-0aa2ca5a0fa7" class="toggle"><li><details open=""><summary>CentOS/RHEL:</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="de984760-f35d-4318-8db6-b202ee79a21c" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo yum install openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd</code></pre></details></li></ul><ul id="415721f5-c911-47f8-8400-4c8436866ae5" class="toggle"><li><details open=""><summary>Fedora:</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b0f82bc5-7026-4393-9124-2ccb1127bc5b" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo dnf install openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd</code></pre></details></li></ul><ul id="f0ad6808-0ca3-4d28-96c8-e2b5e247a93f" class="toggle"><li><details open=""><summary>Arch Linux:</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="894ac96b-7bcc-439c-ba6b-5f2e91752f1b" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo pacman -S openssh
+sudo systemctl enable sshd
+sudo systemctl start sshd</code></pre></details></li></ul><p id="676ed8e2-b61b-4262-8b33-6ad19926bf9a" class="">After installation, make sure to configure your firewall to allow SSH connections (typically on port 22) and review the SSH configuration file (/etc/ssh/sshd_config) for security settings.</p></li></ul><ol type="1" id="6a89fedc-1ef0-43df-9164-ccf022629c5c" class="numbered-list" start="7"><li>Select yes to continue the connection. You will then be prompted to enter the password of the remote machine.</li></ol><figure id="3d58da11-308d-452f-82b2-aa3f9bc9a9c2" class="image"><a href="4f1e0fc0-0b9e-4cbb-b68b-1d29217a2caf.png"><img style="width:577.0964833183048px" src="4f1e0fc0-0b9e-4cbb-b68b-1d29217a2caf.png"/></a></figure><ol type="1" id="33c9bab2-4922-41b8-b421-2cf8481e311a" class="numbered-list" start="8"><li>After successful authentication, you will see that the key was copied.</li></ol><figure id="206a91ad-43f1-4c08-a508-dd89c693c55d" class="image"><a href="c55625ea-cd75-4edd-a085-390713d4556a.png"><img style="width:576.057605760576px" src="c55625ea-cd75-4edd-a085-390713d4556a.png"/></a></figure><ol type="1" id="936cff39-5fc3-47e2-980b-fabde062572f" class="numbered-list" start="9"><li>Now we can test the connection with command ssh username@remote_host. I was prompted by Kali to enter my credentials to access the private key of the key pair.</li></ol><ul id="0bed7a66-3a99-4ff0-b3d3-a1e01467557d" class="bulleted-list"><li style="list-style-type:disc">SSH key pairs consist of a public key and a private key:</li></ul><ul id="6831e1c7-834d-4d57-a65f-a3c57624757c" class="bulleted-list"><li style="list-style-type:disc">Public key: Stored on the remote server and used for encryption. It&#x27;s safe to share.</li></ul><ul id="daa43d83-b074-4970-8eac-a9d3711d2a9c" class="bulleted-list"><li style="list-style-type:disc">Private key: Kept securely on the client machine and used for decryption. Never share this key.</li></ul><p id="5e69553a-af3d-4aa1-8b6d-0da4b4887b93" class="">The public key encrypts data that can only be decrypted by the corresponding private key. This system allows for secure, passwordless authentication between the client and server.</p><figure id="3c3685cd-c692-4ff5-b7d1-8334e065ca83" class="image"><a href="3f3e0510-8b26-43f8-beff-0308495f78d1.png"><img style="width:577.0964833183048px" src="3f3e0510-8b26-43f8-beff-0308495f78d1.png"/></a></figure><ol type="1" id="3420c542-10fb-473a-b38f-7417026477c5" class="numbered-list" start="10"><li>Connection established successfully.</li></ol><figure id="228da702-0dbc-4a72-bdb5-6fabd20d18dc" class="image"><a href="4a159e04-89c3-4734-80bc-7b63364f7fe7.png"><img style="width:577.0964833183048px" src="4a159e04-89c3-4734-80bc-7b63364f7fe7.png"/></a></figure><h2 id="9ce14601-6f63-4619-a520-f19b555cfccf" class="">Troubleshooting SSH Key Pair Login Issues</h2><p id="d616e480-74e2-482e-a979-02d4bfae3e8d" class="">If you encounter problems when trying to log in to a remote host using SSH key pair authentication, consider the following troubleshooting steps:</p><ul id="2fd98cbb-f040-440e-a407-4a7bf21e4230" class="bulleted-list"><li style="list-style-type:disc">Check key permissions: Ensure that the private key file on the client has the correct permissions (typically 600 or -rw-------)</li></ul><ul id="594e8019-428b-401f-91bf-c384c86836bd" class="bulleted-list"><li style="list-style-type:disc">Verify public key on server: Confirm that the public key is correctly added to the ~/.ssh/authorized_keys file on the remote server</li></ul><ul id="dd10e80a-5228-45bc-bd93-8351452252c2" class="bulleted-list"><li style="list-style-type:disc">Check SSH server configuration: Review the /etc/ssh/sshd_config file on the server to ensure that PubkeyAuthentication is set to yes</li></ul><ul id="f8128767-8cdc-46e7-ae7f-111cf8567f7c" class="bulleted-list"><li style="list-style-type:disc">Examine SSH logs: Look at the SSH server logs (often in /var/log/auth.log or /var/log/secure) for any error messages related to key authentication</li></ul><ul id="99487610-3c50-4f10-a6f0-151d4c794832" class="bulleted-list"><li style="list-style-type:disc">Test with verbose output: Use the -v flag with ssh command (e.g., ssh -v user@host) to get detailed debugging information</li></ul><ul id="ddc9a68a-b79e-46b0-96f6-b7b53586add7" class="bulleted-list"><li style="list-style-type:disc">Verify SSH agent: Ensure that the SSH agent is running and has the correct key loaded (use ssh-add -l to list loaded keys)</li></ul><ul id="880a54b7-bfec-44b9-af47-06d1277c6709" class="bulleted-list"><li style="list-style-type:disc">Check for network issues: Confirm that there are no firewall rules or network problems preventing the SSH connection</li></ul><p id="34be37bd-b3c0-483f-947e-06dd234ea309" class="">If problems persist after trying these steps, consider regenerating the key pair.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
