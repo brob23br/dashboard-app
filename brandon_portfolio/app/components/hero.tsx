@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 
 const skills = [
   { name: 'AWS Cloud', icon: Cloud, color: 'text-orange-500' },
+  { name: 'Azure Cloud', icon: Cloud, color: 'text-blue-500' },
   { name: 'AI & Automation', icon: Brain, color: 'text-purple-500' },
   { name: 'Cybersecurity', icon: Shield, color: 'text-red-500' },
   { name: 'Solutions Architecture', icon: Code2, color: 'text-blue-500' },
