@@ -168,6 +168,7 @@ export default function Projects() {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
             Projects & Labs
+            </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Hands-on exploration of cloud technologies, infrastructure automation, and security implementations. 
             Each project demonstrates practical application of modern IT solutions.
