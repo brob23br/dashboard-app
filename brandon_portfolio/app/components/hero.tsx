@@ -32,7 +32,7 @@ export default function Hero() {
               IT Professional & Cloud Solutions Architect
             </p>
             <p className="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-              Passionate about designing scalable, secure cloud solutions with a focus on AWS, 
+              Passionate about designing scalable, secure cloud solutions with AWS and Azure, 
               AI automation, and cybersecurity. Currently pursuing Cloud Computing specialization 
               and working in datacenter infrastructure operations.
             </p>
