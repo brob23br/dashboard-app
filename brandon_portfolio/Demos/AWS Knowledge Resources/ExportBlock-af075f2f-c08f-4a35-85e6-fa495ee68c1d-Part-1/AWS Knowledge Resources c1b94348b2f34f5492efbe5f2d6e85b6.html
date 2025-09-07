@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AWS Knowledge Resources</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c1b94348-b2f3-4f54-92ef-be5f2d6e85b6" class="page sans"><header><img class="page-cover-image" src="AWS Knowledge Resources Banner.webp" style="object-position:center 17.210000000000004%"/><h1 class="page-title">AWS Knowledge Resources</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><div data-testid="/icons/list_gray.svg" style="width:14px;height:14px;flex-shrink:0;transform:scale(1.2);mask:url(/icons/list_gray.svg?mode=light) no-repeat center;-webkit-mask:url(/icons/list_gray.svg?mode=light) no-repeat center;background-color:rgba(71, 70, 68, 0.6);fill:rgba(71, 70, 68, 0.6)"></div></span>Tags</th><td><span class="selected-value select-value-color-green">AWS</span><span class="selected-value select-value-color-blue">AWS Blog</span><span class="selected-value select-value-color-orange">AWS Cloud Practitioner</span><span class="selected-value select-value-color-red">AWS Documentation</span><span class="selected-value select-value-color-pink">AWS Knowledge Center</span><span class="selected-value select-value-color-pink">AWS Support Center</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><div data-testid="/icons/description_gray.svg" style="width:14px;height:14px;flex-shrink:0;transform:scale(1.2);mask:url(/icons/description_gray.svg?mode=light) no-repeat center;-webkit-mask:url(/icons/description_gray.svg?mode=light) no-repeat center;background-color:rgba(71, 70, 68, 0.6);fill:rgba(71, 70, 68, 0.6)"></div></span>Subjects</th><td>Precipio Labs</td></tr></tbody></table></header><div class="page-body"><p id="e4d40f3a-2543-4042-be26-6f452a6fcd0d" class="">In this demonstration, I will be checking out the following services; AWS Support Center, Knowledge Center, AWS Documentation and AWS Blog.</p><p id="90101990-df92-46b3-b314-aef71f797be3" class="">Here&#x27;s a brief summary of these AWS knowledge resources:</p><ul id="9d51ff3b-0d91-4587-82ec-522b5f65c988" class="bulleted-list"><li style="list-style-type:disc"><strong>AWS Support Center:</strong> A central hub for AWS customers to get technical support, manage support cases, and access various support tools and resources.</li></ul><ul id="74d2afe7-c872-4c49-bd2a-8be510cfd19c" class="bulleted-list"><li style="list-style-type:disc"><strong>Knowledge Center:</strong> A repository of short, concise answers to common questions about AWS services, features, and issues. It&#x27;s a self-service resource for quick problem-solving.</li></ul><ul id="d859880d-560f-4d6c-be28-fcafaf695b3a" class="bulleted-list"><li style="list-style-type:disc"><strong>AWS Documentation:</strong> Comprehensive, detailed guides and reference materials for all AWS services. It includes user guides, API references, tutorials, and best practices for implementing and managing AWS resources.</li></ul><ul id="2db7c74c-0196-4140-88a3-c54d595d0793" class="bulleted-list"><li style="list-style-type:disc"><strong>AWS Blog:</strong> A regularly updated platform featuring articles, announcements, and in-depth posts about new AWS services, features, case studies, and technical tips from AWS experts and community members.</li></ul><p id="7ad35f3c-9b92-4380-bfad-c0d6d5fe4a51" class="">These resources collectively provide a wealth of information to help AWS users understand, implement, and troubleshoot AWS services effectively.</p><h1 id="dedc2c4c-c031-47f5-8d84-3b9b5d8203b4" class="">Knowledge Center</h1><ol type="1" id="b26055ab-616b-4a80-a4a5-0070e225f09c" class="numbered-list" start="1"><li>On AWS Management Console, select Services</li></ol><figure id="9d88cf0d-40cc-4e94-8632-40928da6a2b5" class="image"><a href="image.png"><img style="width:1248px" src="image.png"/></a></figure><ol type="1" id="d021ebba-96e6-4148-93bb-5b93e2669c17" class="numbered-list" start="2"><li>Find Customer Enablement in the left-hand pane. In the middle pane, select Support.</li></ol><figure id="419b3d19-f189-41e3-b734-b454dcfacfca" class="image"><a href="image%201.png"><img style="width:1248px" src="image%201.png"/></a></figure><ol type="1" id="22471cfe-5f86-4d95-858a-699628685cbf" class="numbered-list" start="3"><li>On the left side, select Knowledge Center.</li></ol><figure id="cacbaa1e-9275-497e-92bf-047cc3ca02ea" class="image"><a href="image%202.png"><img style="width:1200px" src="image%202.png"/></a></figure><ol type="1" id="c337580d-4ef3-484d-9edc-a33c460353ce" class="numbered-list" start="4"><li>The <strong>AWS Knowledge Center </strong>offers documentation on some of the most asked questions for each available service. In the search bar, type Route 53.</li></ol><figure id="76139b30-8d47-42fb-b8f2-d2653453a8e5" class="image"><a href="image%203.png"><img style="width:1200px" src="image%203.png"/></a></figure><p id="815cc846-f1bd-49ec-afc8-1f45759e6f69" class="">After searching for Route 53 in the AWS Knowledge Center, you&#x27;ll see a list of frequently asked questions and common issues related to Amazon Route 53, which is AWS&#x27;s Domain Name System (DNS) web service. The Knowledge Center provides concise answers and solutions to these questions, helping users quickly troubleshoot and understand various aspects of Route 53.</p><p id="7c06cef9-87a2-4b2a-8e7a-6965a77802c9" class="">Some typical topics you might find include:</p><ul id="5c31d39a-ddc7-44dc-ad26-2e87a3b3cda6" class="bulleted-list"><li style="list-style-type:disc">How to configure DNS records for specific use cases</li></ul><ul id="93c26f67-6123-4c68-88e8-44138f8a2d93" class="bulleted-list"><li style="list-style-type:disc">Troubleshooting domain registration issues</li></ul><ul id="e4d6132e-62d1-4eec-9a01-0c4a14af89a5" class="bulleted-list"><li style="list-style-type:disc">Best practices for setting up health checks and routing policies</li></ul><ul id="6ada6f29-257f-43f4-8cc0-466316d5a486" class="bulleted-list"><li style="list-style-type:disc">Explanations of common error messages and how to resolve them</li></ul><p id="63804e8b-0ffe-41f2-8c81-238cb929e664" class="">The AWS Knowledge Center is an excellent resource for getting quick, practical answers to specific questions about AWS services like Route 53, without having to wade through extensive documentation.</p><h1 id="eef75f47-06e9-4a4a-a1e0-c7fbec0f0e21" class="">AWS Documentation</h1><ol type="1" id="ff9e264e-e121-4368-80cd-16ca73b23981" class="numbered-list" start="1"><li>Return to the AWS Support Center dashboard. Under AWS Knowledge resources, select AWS Documentation.</li></ol><figure id="a3732073-5c1d-4168-ae19-b5037a662291" class="image"><a href="image%204.png"><img style="width:1200px" src="image%204.png"/></a></figure><ol type="1" id="5616c07f-bb5c-4842-8b5e-2a8bad38f096" class="numbered-list" start="2"><li>The AWS Documentation page will open in a new tab. This is a comprehensive resource that provides detailed information about all AWS services.</li></ol><figure id="a679d430-6862-4654-ab59-10dbcb16be3f" class="image"><a href="image%205.png"><img style="width:1200px" src="image%205.png"/></a></figure><ol type="1" id="0e4f6500-6202-40f9-958b-12740fbadf3d" class="numbered-list" start="3"><li>Scroll down through the links and find a service of interest. I will be selecting Route 53.</li></ol><figure id="f2edc07a-ae8a-4be3-aab2-3985e5c784c4" class="image"><a href="image%206.png"><img style="width:1200px" src="image%206.png"/></a></figure><p id="000b2866-e3c7-40ab-822e-df36a0ac173e" class="">AWS Documentation is an extensive collection of guides, tutorials, and reference materials for all AWS services. Here&#x27;s a brief summary of what it offers:</p><ul id="8444dd26-05a5-4a55-92ef-80d85bcc0dec" class="bulleted-list"><li style="list-style-type:disc"><strong>User Guides:</strong> Detailed instructions on how to use and configure AWS services.</li></ul><ul id="7b4e64d2-0a9f-4f87-af35-30be0cb8f882" class="bulleted-list"><li style="list-style-type:disc"><strong>API References:</strong> Complete documentation of AWS APIs for developers.</li></ul><ul id="3617f71b-6bf5-416d-bba4-f3d3020d8d3a" class="bulleted-list"><li style="list-style-type:disc"><strong>Developer Guides:</strong> In-depth information for building applications using AWS services.</li></ul><ul id="db904d4e-29af-41e9-b08e-d3f8d4e42c1d" class="bulleted-list"><li style="list-style-type:disc"><strong>Tutorials and Samples:</strong> Step-by-step guides and code examples for common tasks.</li></ul><ul id="f304eed4-8bcf-4f41-b04a-f548da7ee4b9" class="bulleted-list"><li style="list-style-type:disc"><strong>White Papers:</strong> Technical documents covering AWS best practices, security, and architecture.</li></ul><ul id="9fc8b9fd-2ae8-4926-a08b-c24cc6e7cb7e" class="bulleted-list"><li style="list-style-type:disc"><strong>FAQs:</strong> Answers to frequently asked questions about AWS services.</li></ul><p id="c7b40dca-6cb5-49dc-b630-b272a2cee1bf" class="">The documentation is regularly updated to reflect new features and services, making it an invaluable resource for both beginners and experienced AWS users.</p><h1 id="c4e1512d-378c-4695-a8b8-f8edf8d9ee4a" class="">AWS Blog</h1><ol type="1" id="01931b75-eecc-468e-a8b4-42ad8b5445ed" class="numbered-list" start="1"><li>In the banner select Explore More. Then under Stay Connected, select AWS Blog.</li></ol><figure id="0ebb0705-9d70-4b15-9587-edeb926906df" class="image"><a href="image%207.png"><img style="width:1200px" src="image%207.png"/></a></figure><figure id="15cd5474-e660-45c0-b1e9-227affbddf28" class="image"><a href="image%208.png"><img style="width:1200px" src="image%208.png"/></a></figure><ol type="1" id="84a71a9d-31ca-4d1c-897c-98f616054cf0" class="numbered-list" start="2"><li>The AWS Blog is a platform where AWS shares the latest news, announcements, and insights about their services and technologies. Here&#x27;s a brief summary:</li></ol><ul id="adfda105-cd2a-4aa5-9ca6-fa02157b17cc" class="bulleted-list"><li style="list-style-type:disc">Regular updates: The blog is frequently updated with new posts about AWS services, features, and best practices.</li></ul><ul id="23276759-14e3-4958-bb00-4320e8e01163" class="bulleted-list"><li style="list-style-type:disc">Diverse content: It covers a wide range of topics, including product launches, case studies, technical deep-dives, and industry trends.</li></ul><ul id="56b99525-bc67-4b44-be15-179dc91f0331" class="bulleted-list"><li style="list-style-type:disc">Expert insights: Posts are often written by AWS experts, engineers, and product managers, providing valuable insider knowledge.</li></ul><ul id="3ab2185b-9b5d-4801-b51d-a313cfe85b37" class="bulleted-list"><li style="list-style-type:disc">Customer stories: The blog features success stories and use cases from AWS customers across various industries.</li></ul><ul id="8166b02d-0fb2-4eac-a95e-b5cd8d461f30" class="bulleted-list"><li style="list-style-type:disc">Learning resource: It serves as an excellent learning tool for keeping up with the rapidly evolving AWS ecosystem.</li></ul><p id="3bedf30a-737e-4e86-9bcb-ad7067d1f702" class="">The AWS Blog is an invaluable resource for staying informed about the latest developments in AWS and cloud computing in general.</p><figure id="f78e1ce7-1d5e-4730-ba5f-8ac9ccac75a9" class="image"><a href="image%209.png"><img style="width:1200px" src="image%209.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
