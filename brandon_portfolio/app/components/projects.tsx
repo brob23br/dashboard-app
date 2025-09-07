@@ -47,7 +47,7 @@ const projectCategories = [
         description: 'Scalable EC2 deployment with auto-scaling groups and load balancers for high availability.',
         tags: ['EC2', 'Auto Scaling', 'Load Balancer'],
         status: 'Completed',
-        link: '/Demos/Creating an EC2 Virtual Machine using AWS Management Console/ExportBlock-14d96ec6-7efa-47a9-ab7b-730df997e883-Part-1/Creating an EC2 Virtual Machine using AWS Manageme d6ef0b9fa3ed4e4faa7a71a4d7265714.html'
+        link: '/Demos/Creating an EC2 Virtual Machine using AWS Management Console/ExportBlock-14d96ec6-7efa-47a9-ab7b-730df997e883-Part-1/EC2-Demo.html'
       },
       {
         title: 'VPC Design & Implementation',
@@ -118,27 +118,6 @@ const projectCategories = [
         tags: ['Compliance', 'Security', 'Reporting'],
         status: 'Completed',
         link: '/Demos/AWS Artifact/ExportBlock-0565c41c-6956-4fa1-857a-5805574cea5f-Part-1/AWS Artifact 3f63451eb5c34ef69372b1190c7fe0ad.html'
-      }
-    ]
-  },
-  {
-    name: 'Cost & Resource Management',
-    icon: Database,
-    color: 'text-indigo-500 bg-indigo-50',
-    projects: [
-      {
-        title: 'AWS Pricing Calculator',
-        description: 'Cost optimization analysis and pricing comparison for various AWS service configurations.',
-        tags: ['Cost Optimization', 'Pricing', 'Analysis'],
-        status: 'Completed',
-        link: '/Demos/AWS Pricing Calculator Demo/ExportBlock-[ID]/[HTML_FILE].html' // Will need to find exact path
-      },
-      {
-        title: 'AWS Knowledge Resources',
-        description: 'Curated collection of documentation, tutorials, and best practices for AWS services.',
-        tags: ['Documentation', 'Best Practices', 'Learning'],
-        status: 'Ongoing',
-        link: '/Demos/AWS Knowledge Resources/ExportBlock-[ID]/[HTML_FILE].html' // Will need to find exact path
       }
     ]
   },
