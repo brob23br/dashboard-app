@@ -1,4 +1,3 @@
-
 'use client'
 
 import { motion } from 'framer-motion'
@@ -10,10 +9,12 @@ import { Button } from '@/components/ui/button'
 
 const experience = [
   {
-    title: 'IT Operations Apprentice: Datacenter Infrastructure & Cloud Operations',
+    title: 'Cloud Systems Engineer',
+    subtitle: 'IT Operations Apprentice: Datacenter Infrastructure & Cloud Operations',
     company: 'Atlas Copco Group',
     location: 'Rock Hill, SC',
-    period: 'July 2025 – Present',
+    period: 'October 2025 – Present',
+    subperiod: 'July 2025 – October 2025',
     type: 'Current Role',
     responsibilities: [
       'Monitor, maintain, and optimize datacenter infrastructure and Azure cloud resources',
@@ -111,7 +112,7 @@ export default function Experience() {
             Professional Experience
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Progressive career growth from technical support to cloud operations, with continuous 
+            Progressive career growth from technical support to cloud operations, with continuous
             learning and certification achievements in modern IT technologies.
           </p>
         </motion.div>
@@ -141,6 +142,9 @@ export default function Experience() {
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
                       <div>
                         <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
+                        {job.subtitle && (
+                          <div className="text-sm text-slate-500 mb-2">{job.subtitle}</div>
+                        )}
                         <CardDescription className="flex items-center space-x-4 text-base">
                           <span className="font-semibold text-blue-600">{job.company}</span>
                           <span className="flex items-center space-x-1">
@@ -150,15 +154,20 @@ export default function Experience() {
                         </CardDescription>
                       </div>
                       <div className="flex flex-col lg:items-end mt-3 lg:mt-0">
-                        <Badge 
+                        <Badge
                           variant={job.type === 'Current Role' ? 'default' : 'secondary'}
                           className="mb-2"
                         >
                           {job.type}
                         </Badge>
-                        <div className="flex items-center space-x-1 text-sm text-slate-500">
+                        <div className="flex items-center space-x-2 text-sm text-slate-500">
                           <Calendar className="w-4 h-4" />
-                          <span>{job.period}</span>
+                          <div className="text-right">
+                            <div>{job.period}</div>
+                            {job.subperiod && (
+                              <div className="text-xs text-slate-400">{job.subperiod}</div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -284,13 +293,13 @@ export default function Experience() {
           <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-4">Ready for Solutions Architecture Challenges</h3>
             <p className="text-blue-100 max-w-4xl mx-auto mb-6 leading-relaxed">
-              With progressive experience from technical support to datacenter operations, combined with 
-              comprehensive cloud certifications and hands-on project experience, I'm prepared to design 
+              With progressive experience from technical support to datacenter operations, combined with
+              comprehensive cloud certifications and hands-on project experience, I'm prepared to design
               and implement scalable, secure solutions that meet modern business requirements.
             </p>
-            <Button 
-              variant="secondary" 
-              size="lg" 
+            <Button
+              variant="secondary"
+              size="lg"
               className="px-8"
               onClick={() => window.open('https://me.brob314.com', '_blank')}
             >
