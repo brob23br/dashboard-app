@@ -6,7 +6,7 @@ import { Mountain, Camera, Users, Wrench, Map, Heart, Play, Image as ImageIcon }
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const interests = [
   {
@@ -227,6 +227,23 @@ export default function Interests() {
   
   const [selectedMedia, setSelectedMedia] = useState<number | null>(null)
 
+  useEffect(() => {
+    if (selectedMedia === null) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedMedia(null)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [selectedMedia])
+
   return (
     <section id="interests" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
@@ -303,9 +320,18 @@ export default function Interests() {
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                transition={{ duration: 0.6, delay: Math.min(0.8 + index * 0.05, 1.6) }}
                 className="relative aspect-[4/3] group cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label={`Open ${media.caption}`}
                 onClick={() => setSelectedMedia(index)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    setSelectedMedia(index)
+                  }
+                }}
               >
                 <div className="absolute inset-0 bg-slate-200 rounded-xl overflow-hidden">
                   {media.type === 'image' ? (
@@ -360,9 +386,12 @@ export default function Interests() {
         {selectedMedia !== null && (
           <div 
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label={jeepingMedia[selectedMedia].caption}
             onClick={() => setSelectedMedia(null)}
           >
-            <div className="relative max-w-4xl max-h-full">
+            <div className="relative max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
               <Button
                 variant="ghost"
                 size="sm"

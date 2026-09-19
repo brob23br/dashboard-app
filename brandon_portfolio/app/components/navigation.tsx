@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X, User, Code, Briefcase, Heart, Activity, MessageCircle, ExternalLink } from 'lucide-react'
+import { Menu, X, User, Code, Briefcase, Heart, MessageCircle, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const navItems = [
@@ -10,7 +10,6 @@ const navItems = [
   { name: 'Projects', href: '#projects', icon: Code },
   { name: 'Experience', href: '#experience', icon: Briefcase },
   { name: 'Interests', href: '#interests', icon: Heart },
-  { name: 'Fitness', href: '#strava', icon: Activity },
   { name: 'Contact', href: '#contact', icon: MessageCircle },
 ]
 
