@@ -66,11 +66,11 @@ const experience = [
 
 const education = [
   {
-    degree: 'B.S. Cloud Computing – Amazon Web Services',
+    degree: 'B.S. Cloud and Network Engineering – Microsoft Azure',
     school: 'Western Governors University',
-    period: 'Anticipated April 2026',
+    period: 'Anticipated 2027',
     status: 'In Progress',
-    focus: 'AWS Specialization with hands-on cloud architecture and security practices'
+    focus: 'Microsoft Azure specialization with hands-on cloud networking, architecture, and security practices'
   },
   {
     degree: 'A.A.S Computer Technology: Networking',

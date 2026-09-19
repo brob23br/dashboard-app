@@ -54,7 +54,19 @@ const interests = [
 ]
 
 const jeepingMedia = [
+  {
+    type: 'video',
+    src: '/videos/dickey-bell-climb.mp4',
+    alt: 'Jeep climbing the Dickey Bell trail',
+    caption: 'Dickey Bell climb (filmed by Rich)'
+  },
   // Images - All compressed and optimized for web
+  {
+    type: 'image',
+    src: '/images/trail-hummer-meetup.jpg',
+    alt: 'Jeep Wrangler and Hummer H1 parked on a wooded trail',
+    caption: 'Trail meetup with the Hummer crew'
+  },
   {
     type: 'image',
     src: '/images/trail-mountain.jpg',
