@@ -6,7 +6,7 @@ import { Mountain, Camera, Users, Wrench, Map, Heart, Play, Image as ImageIcon }
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 
 const interests = [
   {
@@ -119,43 +119,37 @@ const jeepingMedia = [
     type: 'image',
     src: '/images/morning-adventure.jpg',
     alt: 'Early morning trail adventure',
-    caption: 'Starting the day with an adventure',
-    rotation: 90
+    caption: 'Starting the day with an adventure'
   },
   {
     type: 'image',
     src: '/images/early-morning-trail.jpg',
     alt: 'Early morning trail exploration',
-    caption: 'Exploring new trails at sunrise',
-    rotation: 90
+    caption: 'Exploring new trails at sunrise'
   },
   {
     type: 'image',
     src: '/images/midday-exploration.jpg',
     alt: 'Midday trail exploration',
-    caption: 'Discovering new paths, or would be if not broken down',
-    rotation: 90
+    caption: 'Discovering new paths, or would be if not broken down'
   },
   {
     type: 'image',
     src: '/images/afternoon-journey.jpg',
     alt: 'Afternoon adventure journey',
-    caption: 'That should buff out',
-    rotation: 90
+    caption: 'That should buff out'
   },
   {
     type: 'image',
     src: '/images/afternoon-trail-run.jpg',
     alt: 'Afternoon trail running',
-    caption: 'Looting overturned hummer',
-    rotation: 90
+    caption: 'Looting overturned hummer'
   },
   {
     type: 'image',
     src: '/images/evening-adventure.jpg',
     alt: 'Evening adventure time',
-    caption: 'Multi-vehicle recovery',
-    rotation: 90
+    caption: 'Multi-vehicle recovery'
   },
   {
     type: 'image',
@@ -326,7 +320,7 @@ export default function Interests() {
                 tabIndex={0}
                 aria-label={`Open ${media.caption}`}
                 onClick={() => setSelectedMedia(index)}
-                onKeyDown={(e) => {
+                onKeyDown={(e: ReactKeyboardEvent<HTMLDivElement>) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault()
                     setSelectedMedia(index)

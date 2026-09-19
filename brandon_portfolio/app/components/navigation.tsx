@@ -31,7 +31,7 @@ export default function Navigation() {
   }
 
   const handleResumeClick = () => {
-    window.open('https://me.brob314.com', '_blank')
+    window.open('https://me.brob314.com', '_blank', 'noopener,noreferrer')
   }
 
   return (

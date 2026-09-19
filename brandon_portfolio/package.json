@@ -104,9 +104,8 @@
     "react-hook-form": "7.54.0"
     },
   "browserslist": [
-  "ie >= 11",
     "> 0.5%",
     "last 2 versions",
     "not dead"
-    ]
-  }
+  ]
+}

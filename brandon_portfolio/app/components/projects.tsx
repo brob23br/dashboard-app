@@ -246,13 +246,7 @@ export default function Projects() {
                           className="w-full justify-between text-sm"
                           onClick={() => {
                             if (project.link) {
-                              if (project.link.startsWith('http')) {
-                                // External link (like GitHub)
-                                window.open(project.link, '_blank');
-                              } else {
-                                // Local HTML demo file
-                                window.open(project.link, '_blank');
-                              }
+                              window.open(project.link, '_blank', 'noopener,noreferrer');
                             }
                           }}
                           disabled={!project.link}
