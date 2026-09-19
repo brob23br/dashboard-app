@@ -89,7 +89,8 @@ const certifications = [
   { name: 'CompTIA Cloud+', year: '2024', category: 'Cloud' },
   { name: 'AWS Certified Cloud Practitioner', year: '2024', category: 'AWS' },
   { name: 'LPI Linux Essentials', year: '2025', category: 'Linux' },
-  { name: 'Microsoft AZ-900', year: '2025', category: 'Azure' }
+  { name: 'Microsoft AZ-900', year: '2025', category: 'Azure' },
+  { name: 'Microsoft AZ-104', year: '2026', category: 'Azure' }
 ]
 
 export default function Experience() {

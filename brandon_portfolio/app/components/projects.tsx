@@ -149,7 +149,7 @@ const projectCategories = [
     projects: [
       {
         title: 'Personal Portfolio Website',
-        description: 'Modern, responsive portfolio built with Next.js 14, TypeScript, and Tailwind CSS. Features smooth animations, interactive components, and cloud deployment.',
+        description: 'Modern, responsive portfolio built with Next.js 15, TypeScript, and Tailwind CSS. Features smooth animations, interactive components, and cloud deployment.',
         tags: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Vercel', 'AWS'],
         status: 'Completed',
         link: 'https://github.com/brob23br/dashboard-app'
