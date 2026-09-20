@@ -284,7 +284,7 @@ export default function Projects() {
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                <span>8 Certifications Earned</span>
+                <span>9 Certifications Earned</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-purple-500 rounded-full"></div>

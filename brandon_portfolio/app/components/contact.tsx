@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Mail, Linkedin, MapPin, CheckCircle } from 'lucide-react'
+import { Mail, Linkedin, MapPin, CheckCircle, Award } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 const contactInfo = [
@@ -19,6 +19,13 @@ const contactInfo = [
     value: 'linkedin.com/in/brob314',
     href: 'https://www.linkedin.com/in/brob314/',
     color: 'text-blue-700 bg-blue-100'
+  },
+  {
+    icon: Award,
+    label: 'Credly',
+    value: 'Verified certifications',
+    href: 'https://www.credly.com/users/brandon-robinson.5fd7fbd3',
+    color: 'text-orange-600 bg-orange-50'
   },
   {
     icon: MapPin,
@@ -58,7 +65,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center mb-12"
           >
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               {contactInfo.map((item, index) => (
                 <motion.div
                   key={item.label}

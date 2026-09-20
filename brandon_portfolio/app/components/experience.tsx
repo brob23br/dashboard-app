@@ -254,7 +254,7 @@ export default function Experience() {
               <h3 className="text-3xl font-bold text-slate-800">Certifications</h3>
             </div>
             <Badge variant="outline" className="text-lg px-4 py-2">
-              8 Certifications
+              {certifications.length} Certifications
             </Badge>
           </motion.div>
 
@@ -280,6 +280,32 @@ export default function Experience() {
                   </Badge>
                 </motion.div>
               ))}
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <span className="text-sm text-slate-500">Verify my credentials:</span>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="https://www.credly.com/users/brandon-robinson.5fd7fbd3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  <Award className="w-4 h-4 mr-1.5" />
+                  Credly Profile
+                  <ExternalLink className="w-3 h-3 ml-1.5" />
+                </a>
+                <a
+                  href="https://learn.microsoft.com/en-us/users/brobinson9744/transcript/dl9x0arz983p3w3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  <GraduationCap className="w-4 h-4 mr-1.5" />
+                  Microsoft Transcript
+                  <ExternalLink className="w-3 h-3 ml-1.5" />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
