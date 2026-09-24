@@ -10,11 +10,11 @@ import { Button } from '@/components/ui/button'
 const experience = [
   {
     title: 'Cloud Systems Engineer',
-    subtitle: 'IT Operations Apprentice: Datacenter Infrastructure & Cloud Operations',
+    subtitle: 'Datacenter Infrastructure & Cloud Operations (previously IT Operations Apprentice)',
     company: 'Atlas Copco Group',
     location: 'Rock Hill, SC',
-    period: 'October 2025 – Present',
-    subperiod: 'July 2025 – October 2025',
+    period: 'September 2025 – Present',
+    subperiod: 'July 2025 – September 2025',
     type: 'Current Role',
     responsibilities: [
       'Monitor, maintain, and optimize datacenter infrastructure and Azure cloud resources',
@@ -33,20 +33,20 @@ const experience = [
     responsibilities: [
       'Led project tracking, configuration, and testing for technology initiatives',
       'Troubleshot network/software/hardware issues for ATMs and teller devices',
-      'Managed milestones via Excel/proprietary databases; administered endpoint security exceptions',
-      'Created Jira tickets and ServiceNow change requests for certificate management'
+      'Managed milestones via Excel/proprietary tools; administered 802.1x bypass exceptions',
+      'Handled certificate changes via Jira/ServiceNow'
     ],
     technologies: ['ServiceNow', 'Jira', 'Network Troubleshooting', 'Project Management', 'Security Management']
   },
   {
     title: 'Business Technical Service Specialist',
-    company: 'Wells Fargo',
+    company: 'Insight Global | Wells Fargo',
     location: 'Charlotte, NC',
     period: 'Sep 2019 – Aug 2021',
     type: 'Previous Role',
     responsibilities: [
-      'Provided phone/ticketing support for hardware/software/network issues',
-      'Troubleshot teller device networks/DNS issues; escalated requests to meet SLAs'
+      'Provided phone and ticketing support for hardware, software, and network issues',
+      'Troubleshot teller device networks and DNS-related issues; reduced chronic issues and met SLAs'
     ],
     technologies: ['DNS', 'Network Support', 'Technical Support', 'SLA Management']
   },
